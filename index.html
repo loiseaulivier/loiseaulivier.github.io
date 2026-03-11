@@ -74,12 +74,12 @@
       padding: 5rem 0 3.5rem;
       border-bottom: 1px solid var(--rule);
     }
-.header-inner {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 3rem;
-  align-items: center;
-}
+    .header-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+    }
     .eyebrow {
       font-family: 'DM Mono', monospace;
       font-size: 0.7rem;
@@ -112,21 +112,20 @@
     .affiliation span { color: var(--ink); font-weight: 400; }
 
     .avatar-block { text-align: right; }
-.avatar {
-  width: 320px;
-  height: 220px;
-  border-radius: 4px;
-  border: 1px solid var(--rule);
-  overflow: hidden;
-}
-
-.avatar img { 
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
-  object-position: center -30%;
-  transform: scale(2);
-}
+    .avatar {
+      width: 320px;
+      height: 220px;
+      border-radius: 4px;
+      border: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center -30%;
+      transform: scale(2);
+    }
 
     /* ── SECTIONS ── */
     section { padding: 4rem 0; border-bottom: 1px solid var(--rule); }
@@ -223,7 +222,6 @@
       gap: 2rem;
       margin-top: 1rem;
     }
-    .contact-item { }
     .contact-label {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
@@ -232,13 +230,11 @@
       color: var(--muted);
       margin-bottom: 0.3rem;
     }
-    .contact-value {
-      font-size: 0.98rem;
-    }
+    .contact-value { font-size: 0.98rem; }
     .contact-value a { color: var(--accent); text-decoration: none; }
     .contact-value a:hover { text-decoration: underline; }
 
-    /* ── TEACHING TABS ── */
+    /* ── TEACHING ── */
     .uni-block { margin-bottom: 3rem; }
     .uni-block:last-child { margin-bottom: 0; }
     .uni-name {
@@ -248,20 +244,19 @@
       padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--rule);
     }
-
     .level-group { margin-bottom: 1.8rem; }
     .level-heading {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
-  border-bottom: 2px solid var(--ink);
-  padding-bottom: 0.5rem;
-  margin-top: 3rem;
-  margin-bottom: 1.2rem;
-}
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0.5rem;
+      margin-top: 3rem;
+      margin-bottom: 1.2rem;
+    }
     .course-list { list-style: none; }
     .course-item {
       display: grid;
@@ -291,19 +286,41 @@
       transition: border-color 0.2s;
     }
     .event-card:hover { border-color: var(--accent); }
+
+    /* The photo strip: 3-column grid */
     .event-photos {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 3px;
       background: var(--rule);
     }
+
+    /* Each figure sits in one grid cell and stacks image + caption */
+    .event-photos figure {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--highlight);
+    }
+
+    .event-photos figcaption {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      padding: 0.3rem 0.5rem;
+      line-height: 1.4;
+      background: var(--paper);
+      border-top: 1px solid var(--rule);
+    }
+
     .event-photo {
       aspect-ratio: 4/3;
       object-fit: cover;
       width: 100%;
       display: block;
-      background: var(--highlight);
     }
+
     .event-photo-placeholder {
       aspect-ratio: 4/3;
       background: var(--highlight);
@@ -322,6 +339,7 @@
       text-transform: uppercase;
       opacity: 0.6;
     }
+
     .event-body { padding: 1.2rem 1.4rem; }
     .event-date {
       font-family: 'DM Mono', monospace;
@@ -362,25 +380,6 @@
       .contact-grid { grid-template-columns: 1fr; }
       .nav-links { gap: 1rem; }
     }
-    .event-photo-wrap {
-  display: flex;
-  flex-direction: column;
-}
-.event-photo-wrap figure {
-  margin: 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.event-photo-wrap figcaption {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px !important;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  padding: 0.3rem 0.5rem;
-  line-height: 1.4;
-  background: var(--paper);
-}
   </style>
 </head>
 <body>
@@ -405,7 +404,7 @@
     <div class="page-wrap">
       <div class="header-inner">
         <div class="fade-in">
-          <p class="eyebrow">Theoretical & Historical Linguist</p>
+          <p class="eyebrow">Theoretical &amp; Historical Linguist</p>
           <h1>Marc <em>Olivier-Loiseau</em></h1>
           <p class="affiliation">
             <span>Postdoctoral Research Fellow</span> · Department of Linguistics<br>
@@ -413,7 +412,6 @@
           </p>
         </div>
         <div class="avatar-block fade-in">
-          <!-- Replace the emoji below with an <img src="photo.jpg" alt="Your Name"> tag -->
           <div class="avatar"><img src="photo.jpg" alt="Marc Olivier-Loiseau"></div>
         </div>
       </div>
@@ -425,7 +423,7 @@
     <div class="page-wrap">
       <p class="section-label">About</p>
       <p>
-        I am a Postdoctoral Research Fellow at Trinity College Dublin, funded by 
+        I am a Postdoctoral Research Fellow at Trinity College Dublin, funded by
         <a href="https://research.ie/funding/goipd/" style="color: var(--accent);">Taighde Éireann – Research Ireland</a>.
         My research sits at the intersection of syntax and language change, with a focus on
         the Romance languages. I have worked on a range of varieties including Old/Modern French,
@@ -446,9 +444,7 @@
         St Catherine's College, and Pembroke College. I previously taught at Queen's University Belfast
         and Ulster University.
       </p>
-      <p> 
-      </p>
-      <div class="contact-grid">
+      <div class="contact-grid" style="margin-top: 2rem;">
         <div class="contact-item">
           <p class="contact-label">Email</p>
           <p class="contact-value">
@@ -506,7 +502,6 @@
     <div class="page-wrap">
       <p class="section-label">Publications</p>
 
-      <!-- BOOK -->
       <p class="level-heading" style="margin-top: 0;">Book</p>
       <ul class="pub-list">
         <li class="pub-item">
@@ -518,7 +513,6 @@
         </li>
       </ul>
 
-      <!-- PEER-REVIEWED JOURNAL ARTICLES -->
       <p class="level-heading">Peer-Reviewed Journal Articles</p>
       <ul class="pub-list">
         <li class="pub-item">
@@ -586,7 +580,6 @@
         </li>
       </ul>
 
-      <!-- BOOK CHAPTERS -->
       <p class="level-heading">Book Chapters</p>
       <ul class="pub-list">
         <li class="pub-item">
@@ -605,7 +598,6 @@
         </li>
       </ul>
 
-      <!-- SPECIAL ISSUES -->
       <p class="level-heading">Edited Special Issues</p>
       <ul class="pub-list">
         <li class="pub-item">
@@ -638,7 +630,6 @@
         </li>
       </ul>
 
-      <!-- BOOK REVIEW -->
       <p class="level-heading">Book Review</p>
       <ul class="pub-list">
         <li class="pub-item">
@@ -650,7 +641,6 @@
         </li>
       </ul>
 
-      <!-- THESES -->
       <p class="level-heading">Theses</p>
       <ul class="pub-list">
         <li class="pub-item">
@@ -669,7 +659,6 @@
         </li>
       </ul>
 
-      <!-- BLOG POST -->
       <p class="level-heading">Blog Post</p>
       <ul class="pub-list">
         <li class="pub-item">
@@ -689,10 +678,8 @@
     <div class="page-wrap">
       <p class="section-label">Talks &amp; Presentations</p>
 
-      <!-- INVITED TALKS -->
       <p class="level-heading" style="margin-top: 0;">Invited Talks</p>
       <ul class="pub-list">
-
         <li class="pub-item">
           <span class="pub-year">2025</span>
           <div>
@@ -700,7 +687,6 @@
             <p class="pub-venue">Journée d'études sur les clitiques dans les langues romanes. Université Sorbonne Nouvelle, France. December 11–12.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2025</span>
           <div>
@@ -708,7 +694,6 @@
             <p class="pub-venue">Journée d'études sur les clitiques dans les langues romanes. Université Sorbonne Nouvelle, France. December 11–12.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2025</span>
           <div>
@@ -716,7 +701,6 @@
             <p class="pub-venue">Linguistics Research Seminar. Trinity College Dublin, Ireland. October 7.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2025</span>
           <div>
@@ -724,7 +708,6 @@
             <p class="pub-venue">General Linguistics Seminar. Faculty of Linguistics, Philology and Phonetics, University of Oxford, UK. April 28.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2025</span>
           <div>
@@ -732,7 +715,6 @@
             <p class="pub-venue">Opération "Clitiques". Université Sorbonne Nouvelle, France. February 7.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2024</span>
           <div>
@@ -740,7 +722,6 @@
             <p class="pub-venue">RoLinC - Romance Linguistics Circle. Universities of Cambridge and Newcastle, UK. October 29.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2024</span>
           <div>
@@ -748,7 +729,6 @@
             <p class="pub-venue">Historical Syntax Seminar. Faculty of Linguistics, Philology and Phonetics, University of Oxford, UK. May 1.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -756,7 +736,6 @@
             <p class="pub-venue">Oxford Romance Linguistics Seminar. Research Centre for Romance Linguistics, University of Oxford, UK. November 16.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -764,7 +743,6 @@
             <p class="pub-venue">Oxford Romance Linguistics Seminar. Research Centre for Romance Linguistics, University of Oxford, UK. February 23.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2021</span>
           <div>
@@ -772,13 +750,10 @@
             <p class="pub-venue">Linguistics Research Seminar. School of Communication and Media, Ulster University, UK. March 23.</p>
           </div>
         </li>
-
       </ul>
 
-      <!-- PEER-REVIEWED ORAL PRESENTATIONS -->
       <p class="level-heading">Peer-Reviewed Oral Presentations</p>
       <ul class="pub-list">
-
         <li class="pub-item">
           <span class="pub-year">2026</span>
           <div>
@@ -786,7 +761,6 @@
             <p class="pub-venue">CGG35 - 35th Colloquium on Generative Grammar. Universitat de Barcelona, Catalonia. May 27–29.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2025</span>
           <div>
@@ -794,7 +768,6 @@
             <p class="pub-venue">SLE58 - Societas Linguistica Europaea. Université Bordeaux Montaigne, France. August 26–29.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2024</span>
           <div>
@@ -802,7 +775,6 @@
             <p class="pub-venue">Going Romance 38. Universidade do Minho, Portugal. December 4–6.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2024</span>
           <div>
@@ -810,7 +782,6 @@
             <p class="pub-venue">ICL2024 - 21st International Congress of Linguists. Adam Mickiewicz University, Poland. September 4–8.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2024</span>
           <div>
@@ -818,7 +789,6 @@
             <p class="pub-venue">SLE57 - Societas Linguistica Europaea. University of Helsinki, Finland. August 21–24.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2024</span>
           <div>
@@ -826,7 +796,6 @@
             <p class="pub-venue">Nouălea simpozion internațional de lingvistică. Institutul de Lingvistică, Romania. May 23–24.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2024</span>
           <div>
@@ -834,7 +803,6 @@
             <p class="pub-venue">Romance grammars, context and contact. University of Birmingham, UK. January 8–10.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -842,7 +810,6 @@
             <p class="pub-venue">Going Romance 37. Radboud University of Nijmegen, The Netherlands. November 30–December 1.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -850,7 +817,6 @@
             <p class="pub-venue">ICHL26 - 26th International Conference on Historical Linguistics. University of Heidelberg, Germany. September 4–8.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -858,7 +824,6 @@
             <p class="pub-venue">SLE56 - Societas Linguistica Europaea. National and Kapodistrian University of Athens, Greece. August 29–September 1.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -866,7 +831,6 @@
             <p class="pub-venue">LAGB 2023. Anglia Ruskin University, UK. August 29–September 1.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -874,7 +838,6 @@
             <p class="pub-venue">DiGS24 - Diachronic Generative Syntax. University of Paris, France. July 5–7.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -882,7 +845,6 @@
             <p class="pub-venue">LSRL53 - Linguistic Symposium on Romance Languages. Université Paris Cité / Sorbonne Nouvelle / Paris Saclay, France. June 26–30.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2022</span>
           <div>
@@ -890,7 +852,6 @@
             <p class="pub-venue">Going Romance 36. Universitat Autònoma de Barcelona, Spain. November 30–December 2.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2022</span>
           <div>
@@ -898,7 +859,6 @@
             <p class="pub-venue">LAGB 2022. Ulster University, UK. September 14.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2022</span>
           <div>
@@ -906,7 +866,6 @@
             <p class="pub-venue">DiGS23 - Diachronic Generative Syntax. New York University, USA. June 8–10.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2022</span>
           <div>
@@ -914,7 +873,6 @@
             <p class="pub-venue">Colloque international Diachro X. Paris Sorbonne Université, France. May 31–June 2.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2022</span>
           <div>
@@ -922,7 +880,6 @@
             <p class="pub-venue">SCUP22 - Syntactic Conferences at the University of Palermo, Italy. May 26–27.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2022</span>
           <div>
@@ -930,7 +887,6 @@
             <p class="pub-venue">LSRL52 - Linguistic Symposium on Romance Languages. University of Wisconsin-Madison, USA. April 21–23.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2022</span>
           <div>
@@ -938,7 +894,6 @@
             <p class="pub-venue">PLC46 - Penn Linguistics Conference. University of Pennsylvania, USA. March 18–20.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2021</span>
           <div>
@@ -946,7 +901,6 @@
             <p class="pub-venue">LAGB 2021. Online. September 8.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2021</span>
           <div>
@@ -954,7 +908,6 @@
             <p class="pub-venue">mFiL - Manchester Forum in Linguistics. University of Manchester, UK. April 28–29.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2020</span>
           <div>
@@ -962,13 +915,10 @@
             <p class="pub-venue">Society for French Studies. Online. July 29.</p>
           </div>
         </li>
-
       </ul>
 
-      <!-- PRESENTATIONS AT WORKSHOPS/SEMINARS -->
       <p class="level-heading">Presentations at Workshops &amp; Seminars</p>
       <ul class="pub-list">
-
         <li class="pub-item">
           <span class="pub-year">2026</span>
           <div>
@@ -976,7 +926,6 @@
             <p class="pub-venue">Synchronic and diachronic syntax of Occitan. Université de Caen Normandie. April 8–10.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2026</span>
           <div>
@@ -984,7 +933,6 @@
             <p class="pub-venue">International Workshop on Romance SE/SI Constructions. Universitat de Barcelona. January 22–23.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2025</span>
           <div>
@@ -992,7 +940,6 @@
             <p class="pub-venue">Cambridge Romance Linguistics Seminar. University of Cambridge, Trinity Hall, UK. January 4.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2025</span>
           <div>
@@ -1000,7 +947,6 @@
             <p class="pub-venue">Cambridge Romance Linguistics Seminar. University of Cambridge, Trinity Hall, UK. January 3.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -1008,7 +954,6 @@
             <p class="pub-venue">Occitan Studies Day. University of Oxford, Trinity College, UK. May 20.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -1016,7 +961,6 @@
             <p class="pub-venue">Cambridge 50th Romance Linguistics Seminar. University of Cambridge, Trinity Hall, UK. January 5.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2019</span>
           <div>
@@ -1024,13 +968,10 @@
             <p class="pub-venue">ADEFFI Symposium. Maynooth University, Ireland. April.</p>
           </div>
         </li>
-
       </ul>
 
-      <!-- POSTER PRESENTATIONS -->
       <p class="level-heading">Poster Presentations</p>
       <ul class="pub-list">
-
         <li class="pub-item">
           <span class="pub-year">2026</span>
           <div>
@@ -1038,7 +979,6 @@
             <p class="pub-venue">CGG35 - 35th Colloquium on Generative Grammar. Universitat de Barcelona, Catalonia. May 27–29.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2024</span>
           <div>
@@ -1046,7 +986,6 @@
             <p class="pub-venue">Going Romance 38. Universidade do Minho, Portugal. December 4–6.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2019</span>
           <div>
@@ -1054,13 +993,10 @@
             <p class="pub-venue">CreteLing. University of Crete, Greece. July 18.</p>
           </div>
         </li>
-
       </ul>
 
-      <!-- SERVICE -->
       <p class="level-heading">Service</p>
       <ul class="pub-list">
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -1068,7 +1004,6 @@
             <p class="pub-venue">Life Beyond the PhD Series. Doctoral College, Ulster University, UK. February 7.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2022</span>
           <div>
@@ -1076,13 +1011,10 @@
             <p class="pub-venue">Teaching and Learning Series. Jointly invited by ADEFFI and ASMCF, UK &amp; Ireland. June 29.</p>
           </div>
         </li>
-
       </ul>
 
-      <!-- OUTREACH -->
       <p class="level-heading">Outreach</p>
       <ul class="pub-list">
-
         <li class="pub-item">
           <span class="pub-year">2025</span>
           <div>
@@ -1090,7 +1022,6 @@
             <p class="pub-venue">St Catherine's College Academic Taster Days, Oxford.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2024</span>
           <div>
@@ -1098,7 +1029,6 @@
             <p class="pub-venue">St Catherine's College Academic Taster Days, Oxford.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2023</span>
           <div>
@@ -1106,7 +1036,6 @@
             <p class="pub-venue">St Catherine's College Academic Taster Days, Oxford.</p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2021</span>
           <div>
@@ -1114,7 +1043,6 @@
             <p class="pub-venue">Imagine Festival, Belfast. March 25. <a class="pub-link" href="https://www.youtube.com/watch?v=DYt4RlbHbuY">Watch ↗</a></p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2021</span>
           <div>
@@ -1122,7 +1050,6 @@
             <p class="pub-venue">20 minutes, France. November 18. <a class="pub-link" href="https://www.20minutes.fr/societe/3174555-20211118-arrivee-pronom-iel-dictionnaire-robert-marque-tournant-societal">Read ↗</a></p>
           </div>
         </li>
-
         <li class="pub-item">
           <span class="pub-year">2021</span>
           <div>
@@ -1130,7 +1057,6 @@
             <p class="pub-venue">BFMTV, France. November 17. <a class="pub-link" href="https://www.bfmtv.com/replay-emissions/bfm-news/iel-un-nouveau-pronom-dans-le-dictionnaire-17-11_VN-202111170481.html">Watch ↗</a></p>
           </div>
         </li>
-
       </ul>
 
     </div>
@@ -1150,70 +1076,38 @@
         <!-- UNIVERSITY OF OXFORD -->
         <div class="uni-block">
           <p class="uni-name">University of Oxford</p>
-
           <div class="level-group">
             <p class="level-heading" style="margin-top: 0;">Undergraduate — Year 1</p>
             <ul class="course-list">
-              <li class="course-item">
-                <span class="course-name">Prelims — General Linguistics</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Prelims — Semantics &amp; Pragmatics</span>
-              </li>
+              <li class="course-item"><span class="course-name">Prelims — General Linguistics</span></li>
+              <li class="course-item"><span class="course-name">Prelims — Semantics &amp; Pragmatics</span></li>
             </ul>
           </div>
-
           <div class="level-group">
             <p class="level-heading">Undergraduate — Years 2, 3, 4</p>
             <ul class="course-list">
-              <li class="course-item">
-                <span class="course-name">Paper A/XIII — General Linguistics</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Paper IV — French Historical Linguistics</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Paper V — Modern French Linguistics</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Paper B2 — Syntax</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Paper B6 — Historical Linguistics</span>
-              </li>
+              <li class="course-item"><span class="course-name">Paper A/XIII — General Linguistics</span></li>
+              <li class="course-item"><span class="course-name">Paper IV — French Historical Linguistics</span></li>
+              <li class="course-item"><span class="course-name">Paper V — Modern French Linguistics</span></li>
+              <li class="course-item"><span class="course-name">Paper B2 — Syntax</span></li>
+              <li class="course-item"><span class="course-name">Paper B6 — Historical Linguistics</span></li>
             </ul>
           </div>
-
           <div class="level-group">
             <p class="level-heading">Postgraduate</p>
             <ul class="course-list">
-              <li class="course-item">
-                <span class="course-name">MPhil Thesis — Research supervision</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Paper Bii — Syntax</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Paper Di — History of French</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Paper Dii — Structure of French</span>
-              </li>
+              <li class="course-item"><span class="course-name">MPhil Thesis — Research supervision</span></li>
+              <li class="course-item"><span class="course-name">Paper Bii — Syntax</span></li>
+              <li class="course-item"><span class="course-name">Paper Di — History of French</span></li>
+              <li class="course-item"><span class="course-name">Paper Dii — Structure of French</span></li>
             </ul>
           </div>
-
           <div class="level-group">
             <p class="level-heading">Miscellaneous</p>
             <ul class="course-list">
-              <li class="course-item">
-                <span class="course-name">Reading Group — Occitan</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Oxford Prospects Programme — Critical Thinking</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Oxford Prospects Programme — Presentation Skills</span>
-              </li>
+              <li class="course-item"><span class="course-name">Reading Group — Occitan</span></li>
+              <li class="course-item"><span class="course-name">Oxford Prospects Programme — Critical Thinking</span></li>
+              <li class="course-item"><span class="course-name">Oxford Prospects Programme — Presentation Skills</span></li>
             </ul>
           </div>
         </div>
@@ -1221,52 +1115,26 @@
         <!-- ULSTER UNIVERSITY -->
         <div class="uni-block">
           <p class="uni-name">Ulster University</p>
-
           <div class="level-group">
             <p class="level-heading" style="margin-top: 0;">Undergraduate</p>
             <ul class="course-list">
-              <li class="course-item">
-                <span class="course-name">CMM538 — Dissertation, research supervision</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">CMM350 — Advanced Syntax</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">CMM349 — Formal Semantics</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">CMM384 — Steps into Sociolinguistics</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">CMM151 — Introduction to Morphology and Syntax</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">FRE507 — French Language &amp; Society</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">FRE505 — Dissertation, research supervision</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">LAN510 — Advanced Translation for English Native Speakers</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">LAN510 — Interpreting</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">ESL302 — Translation for French Native Speakers</span>
-              </li>
+              <li class="course-item"><span class="course-name">CMM538 — Dissertation, research supervision</span></li>
+              <li class="course-item"><span class="course-name">CMM350 — Advanced Syntax</span></li>
+              <li class="course-item"><span class="course-name">CMM349 — Formal Semantics</span></li>
+              <li class="course-item"><span class="course-name">CMM384 — Steps into Sociolinguistics</span></li>
+              <li class="course-item"><span class="course-name">CMM151 — Introduction to Morphology and Syntax</span></li>
+              <li class="course-item"><span class="course-name">FRE507 — French Language &amp; Society</span></li>
+              <li class="course-item"><span class="course-name">FRE505 — Dissertation, research supervision</span></li>
+              <li class="course-item"><span class="course-name">LAN510 — Advanced Translation for English Native Speakers</span></li>
+              <li class="course-item"><span class="course-name">LAN510 — Interpreting</span></li>
+              <li class="course-item"><span class="course-name">ESL302 — Translation for French Native Speakers</span></li>
             </ul>
           </div>
-
           <div class="level-group">
             <p class="level-heading">Postgraduate</p>
             <ul class="course-list">
-              <li class="course-item">
-                <span class="course-name">CMM531 — Formal Semantics</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Doctoral College — Introduction to LaTeX</span>
-              </li>
+              <li class="course-item"><span class="course-name">CMM531 — Formal Semantics</span></li>
+              <li class="course-item"><span class="course-name">Doctoral College — Introduction to LaTeX</span></li>
             </ul>
           </div>
         </div>
@@ -1274,25 +1142,14 @@
         <!-- QUEEN'S UNIVERSITY BELFAST -->
         <div class="uni-block">
           <p class="uni-name">Queen's University Belfast</p>
-
           <div class="level-group">
             <p class="level-heading" style="margin-top: 0;">Undergraduate</p>
             <ul class="course-list">
-              <li class="course-item">
-                <span class="course-name">FRH3101 — Essay Writing</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">FRH3101 — Translation</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">FRH3050 — French Grammar</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">FRH3050 — Oral French</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">FRH3050 — Professional French</span>
-              </li>
+              <li class="course-item"><span class="course-name">FRH3101 — Essay Writing</span></li>
+              <li class="course-item"><span class="course-name">FRH3101 — Translation</span></li>
+              <li class="course-item"><span class="course-name">FRH3050 — French Grammar</span></li>
+              <li class="course-item"><span class="course-name">FRH3050 — Oral French</span></li>
+              <li class="course-item"><span class="course-name">FRH3050 — Professional French</span></li>
             </ul>
           </div>
         </div>
@@ -1300,19 +1157,12 @@
         <!-- LYCÉE GRANDMONT -->
         <div class="uni-block">
           <p class="uni-name">Lycée Grandmont</p>
-
           <div class="level-group">
             <p class="level-heading" style="margin-top: 0;">Baccalauréat Level</p>
             <ul class="course-list">
-              <li class="course-item">
-                <span class="course-name">English Language</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">English Literature</span>
-              </li>
-              <li class="course-item">
-                <span class="course-name">Technological Sciences in English</span>
-              </li>
+              <li class="course-item"><span class="course-name">English Language</span></li>
+              <li class="course-item"><span class="course-name">English Literature</span></li>
+              <li class="course-item"><span class="course-name">Technological Sciences in English</span></li>
             </ul>
           </div>
         </div>
@@ -1321,7 +1171,7 @@
     </div>
   </section>
 
- <!-- EVENTS -->
+  <!-- EVENTS -->
   <section id="events">
     <div class="page-wrap">
       <p class="section-label">Events</p>
