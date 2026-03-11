@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Your Name | Theoretical Linguist</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1714;
+      --paper: #f5f1eb;
+      --accent: #8b3a2a;
+      --muted: #7a736a;
+      --rule: #d4cdc4;
+      --highlight: #e8dfd4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+      padding: 0.9rem 0;
+    }
+    nav .page-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .nav-name {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    header {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .header-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: end;
+    }
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .tagline {
+      margin-top: 1rem;
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-style: italic;
+      max-width: 520px;
+    }
+    .affiliation {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 1.6rem;
+      letter-spacing: 0.04em;
+    }
+    .affiliation span { color: var(--ink); font-weight: 400; }
+
+    .avatar-block { text-align: right; }
+    .avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: var(--highlight);
+      border: 2px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--muted);
+      overflow: hidden;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── SECTIONS ── */
+    section { padding: 4rem 0; border-bottom: 1px solid var(--rule); }
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── RESEARCH AREAS ── */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .research-card {
+      background: var(--highlight);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 1.2rem 1.4rem;
+      transition: border-color 0.2s;
+    }
+    .research-card:hover { border-color: var(--accent); }
+    .research-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+    .research-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list { list-style: none; }
+    .pub-item {
+      padding: 1.4rem 0;
+      border-top: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.2rem;
+      align-items: start;
+    }
+    .pub-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding-top: 0.25rem;
+      min-width: 2.5rem;
+    }
+    .pub-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+    .pub-venue {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+    .pub-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      margin-left: 0.6rem;
+    }
+    .pub-link:hover { text-decoration: underline; }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .contact-item { }
+    .contact-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .contact-value {
+      font-size: 0.98rem;
+    }
+    .contact-value a { color: var(--accent); text-decoration: none; }
+    .contact-value a:hover { text-decoration: underline; }
+
+    /* ── TEACHING TABS ── */
+    .uni-block { margin-bottom: 3rem; }
+    .uni-block:last-child { margin-bottom: 0; }
+    .uni-name {
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .level-group { margin-bottom: 1.8rem; }
+    .level-heading {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .course-list { list-style: none; }
+    .course-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px dotted var(--rule);
+      align-items: baseline;
+    }
+    .course-item:last-child { border-bottom: none; }
+    .course-name { font-size: 0.98rem; font-weight: 500; }
+    .course-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    /* ── EVENT CARDS ── */
+    .event-list { list-style: none; margin-top: 1.5rem; }
+    .event-card {
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .event-card:hover { border-color: var(--accent); }
+    .event-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3px;
+      background: var(--rule);
+    }
+    .event-photo {
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+      background: var(--highlight);
+    }
+    .event-photo-placeholder {
+      aspect-ratio: 4/3;
+      background: var(--highlight);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--muted);
+    }
+    .event-photo-placeholder svg { width: 22px; height: 22px; opacity: 0.35; }
+    .event-photo-placeholder span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+    .event-body { padding: 1.2rem 1.4rem; }
+    .event-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .event-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .event-venue { font-size: 0.9rem; color: var(--muted); font-style: italic; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 0;
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── FADE-IN ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeUp 0.7s ease both; }
+    .fade-in:nth-child(2) { animation-delay: 0.1s; }
+    .fade-in:nth-child(3) { animation-delay: 0.2s; }
+    .fade-in:nth-child(4) { animation-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 580px) {
+      .header-inner { grid-template-columns: 1fr; }
+      .avatar-block { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="page-wrap">
+      <a href="#" class="nav-name">Your Name</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#talks">Talks</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#events">Events</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <div class="page-wrap">
+      <div class="header-inner">
+        <div class="fade-in">
+          <p class="eyebrow">Theoretical Linguist</p>
+          <h1>Your <em>Name</em></h1>
+          <p class="tagline">Studying the abstract structures that underlie human language.</p>
+          <p class="affiliation">
+            <span>Assistant Professor</span> · Department of Linguistics<br>
+            <span>Your University</span> · City, Country
+          </p>
+        </div>
+        <div class="avatar-block fade-in">
+          <!-- Replace the emoji below with an <img src="photo.jpg" alt="Your Name"> tag -->
+          <div class="avatar">🧑‍🎓</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="page-wrap">
+      <p class="section-label">About</p>
+      <p>
+        I am an Assistant Professor of Linguistics at Your University. My work sits at the intersection of
+        syntax, semantics, and morphology, with a particular focus on the architecture of grammar and how
+        it varies — and does not vary — across the world's languages.
+      </p>
+      <p>
+        Before joining Your University, I completed my PhD at [Graduate Institution] and held a postdoctoral
+        fellowship at [Postdoc Institution]. I am a member of the [Lab or Research Group Name].
+      </p>
+      <p>
+        Outside of linguistics, I enjoy [a hobby or two — readers appreciate a human touch].
+      </p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <p class="contact-label">Email</p>
+          <p class="contact-value"><a href="mailto:yourname@university.edu">yourname@university.edu</a></p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Office</p>
+          <p class="contact-value">Room 000, Building Name<br>Your University</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Mailing Address</p>
+          <p class="contact-value">Department of Linguistics<br>Your University<br>City, Country</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Profiles</p>
+          <p class="contact-value">
+            <a href="#">Google Scholar</a> ·
+            <a href="#">PhilPapers</a> ·
+            <a href="#">Academia.edu</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="page-wrap">
+      <p class="section-label">Research</p>
+      <p>
+        My research investigates the formal properties of natural language, drawing on fieldwork,
+        experimental methods, and cross-linguistic comparison. Current projects include:
+      </p>
+      <div class="research-grid">
+        <div class="research-card">
+          <h3>Syntax &amp; Phrase Structure</h3>
+          <p>How clauses are built from smaller pieces, and what this reveals about universal grammar.</p>
+        </div>
+        <div class="research-card">
+          <h3>Morphosyntax</h3>
+          <p>The interaction between word-internal structure and syntactic derivations.</p>
+        </div>
+        <div class="research-card">
+          <h3>Semantics &amp; Pragmatics</h3>
+          <p>Compositionality, scope, tense, and how meaning is assembled from form.</p>
+        </div>
+        <div class="research-card">
+          <h3>Language X Fieldwork</h3>
+          <p>Documenting and analysing [Language name], an under-described language of [region].</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="page-wrap">
+      <p class="section-label">Selected Publications</p>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <span class="pub-year">2024</span>
+          <div>
+            <p class="pub-title">The syntax of [phenomenon]: evidence from [language]</p>
+            <p class="pub-venue">
+              <em>Journal of Linguistics</em>, 60(2), 123–178.
+              <a class="pub-link" href="#">PDF ↗</a>
+            </p>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-year">2023</span>
+          <div>
+            <p class="pub-title">Agreement, movement, and the architecture of the clause</p>
+            <p class="pub-venue">
+              <em>Natural Language &amp; Linguistic Theory</em>, 41(4), 899–944.
+              <a class="pub-link" href="#">PDF ↗</a>
+            </p>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-year">2022</span>
+          <div>
+            <p class="pub-title">Toward a unified account of [phenomenon]</p>
+            <p class="pub-venue">
+              In A. Editor &amp; B. Editor (eds.), <em>Title of Edited Volume</em>. Publisher.
+              <a class="pub-link" href="#">PDF ↗</a>
+            </p>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-year">2021</span>
+          <div>
+            <p class="pub-title">Morphological case and its syntactic reflexes</p>
+            <p class="pub-venue">
+              <em>Lingua</em>, 258, 103–121.
+              <a class="pub-link" href="#">PDF ↗</a>
+            </p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- TALKS -->
+  <section id="talks">
+    <div class="page-wrap">
+      <p class="section-label">Talks &amp; Presentations</p>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <span class="pub-year">2025</span>
+          <div>
+            <p class="pub-title">Title of invited talk</p>
+            <p class="pub-venue">Conference or Institution Name, City, Country.</p>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-year">2024</span>
+          <div>
+            <p class="pub-title">Title of conference paper</p>
+            <p class="pub-venue">
+              Annual Conference on [Topic] (CONF 2024), City, Country.
+              <a class="pub-link" href="#">Slides ↗</a>
+            </p>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-year">2023</span>
+          <div>
+            <p class="pub-title">Title of another talk</p>
+            <p class="pub-venue">Workshop on [Topic], Institution, City.</p>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-year">2022</span>
+          <div>
+            <p class="pub-title">Title of colloquium talk</p>
+            <p class="pub-venue">
+              Linguistics Colloquium, [University Name].
+              <a class="pub-link" href="#">Handout ↗</a>
+            </p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section id="teaching">
+    <div class="page-wrap">
+      <p class="section-label">Teaching</p>
+      <p>
+        I have taught courses at the undergraduate and postgraduate levels across three institutions,
+        covering core and advanced topics in theoretical linguistics.
+      </p>
+
+      <div style="margin-top: 2.2rem;">
+
+        <!-- UNIVERSITY A -->
+        <div class="uni-block">
+          <p class="uni-name">University A</p>
+          <div class="level-group">
+            <p class="level-heading">Undergraduate</p>
+            <ul class="course-list">
+              <li class="course-item">
+                <span class="course-name">Introduction to Syntax</span>
+                <span class="course-meta">Spring 2025</span>
+              </li>
+              <li class="course-item">
+                <span class="course-name">Language Universals</span>
+                <span class="course-meta">Spring 2024</span>
+              </li>
+              <li class="course-item">
+                <span class="course-name">Phonology I</span>
+                <span class="course-meta">Fall 2023</span>
+              </li>
+            </ul>
+          </div>
+          <div class="level-group">
+            <p class="level-heading">Postgraduate</p>
+            <ul class="course-list">
+              <li class="course-item">
+                <span class="course-name">Morphosyntax Seminar</span>
+                <span class="course-meta">Fall 2024</span>
+              </li>
+              <li class="course-item">
+                <span class="course-name">Topics in Formal Semantics</span>
+                <span class="course-meta">Fall 2023</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- UNIVERSITY B -->
+        <div class="uni-block">
+          <p class="uni-name">University B</p>
+          <div class="level-group">
+            <p class="level-heading">Undergraduate</p>
+            <ul class="course-list">
+              <li class="course-item">
+                <span class="course-name">Foundations of Linguistics</span>
+                <span class="course-meta">Spring 2022</span>
+              </li>
+              <li class="course-item">
+                <span class="course-name">Syntax and Grammatical Theory</span>
+                <span class="course-meta">Fall 2021</span>
+              </li>
+            </ul>
+          </div>
+          <div class="level-group">
+            <p class="level-heading">Postgraduate</p>
+            <ul class="course-list">
+              <li class="course-item">
+                <span class="course-name">Advanced Syntax</span>
+                <span class="course-meta">Spring 2022</span>
+              </li>
+              <li class="course-item">
+                <span class="course-name">Minimalist Program</span>
+                <span class="course-meta">Fall 2021</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- UNIVERSITY C -->
+        <div class="uni-block">
+          <p class="uni-name">University C</p>
+          <div class="level-group">
+            <p class="level-heading">Undergraduate</p>
+            <ul class="course-list">
+              <li class="course-item">
+                <span class="course-name">Introduction to Linguistics</span>
+                <span class="course-meta">Spring 2020</span>
+              </li>
+              <li class="course-item">
+                <span class="course-name">Morphology</span>
+                <span class="course-meta">Fall 2019</span>
+              </li>
+            </ul>
+          </div>
+          <div class="level-group">
+            <p class="level-heading">Postgraduate</p>
+            <ul class="course-list">
+              <li class="course-item">
+                <span class="course-name">Seminar in Theoretical Linguistics</span>
+                <span class="course-meta">Spring 2020</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section id="events">
+    <div class="page-wrap">
+      <p class="section-label">Upcoming Events</p>
+      <p>
+        Conferences, workshops, and other events I am involved in organising or attending.
+      </p>
+
+      <ul class="event-list">
+
+        <!-- EVENT 1 -->
+        <li class="event-card">
+          <div class="event-photos">
+            <div class="event-photo-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16l4-4 4 4 4-6 4 6"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/></svg>
+              <span>Photo 1</span>
+            </div>
+            <div class="event-photo-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16l4-4 4 4 4-6 4 6"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/></svg>
+              <span>Photo 2</span>
+            </div>
+            <div class="event-photo-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16l4-4 4 4 4-6 4 6"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/></svg>
+              <span>Photo 3</span>
+            </div>
+          </div>
+          <div class="event-body">
+            <p class="event-date">June 2026</p>
+            <p class="event-title">Name of Conference (CONF 2026)</p>
+            <p class="event-venue">University or Venue, City, Country — <em>Invited speaker</em></p>
+          </div>
+        </li>
+
+        <!-- EVENT 2 -->
+        <li class="event-card">
+          <div class="event-photos">
+            <div class="event-photo-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16l4-4 4 4 4-6 4 6"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/></svg>
+              <span>Photo 1</span>
+            </div>
+            <div class="event-photo-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16l4-4 4 4 4-6 4 6"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/></svg>
+              <span>Photo 2</span>
+            </div>
+            <div class="event-photo-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16l4-4 4 4 4-6 4 6"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/></svg>
+              <span>Photo 3</span>
+            </div>
+          </div>
+          <div class="event-body">
+            <p class="event-date">April 2026</p>
+            <p class="event-title">Workshop on [Topic]</p>
+            <p class="event-venue">Institution, City — <em>Organiser</em></p>
+          </div>
+        </li>
+
+        <!-- EVENT 3 -->
+        <li class="event-card">
+          <div class="event-photos">
+            <div class="event-photo-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16l4-4 4 4 4-6 4 6"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/></svg>
+              <span>Photo 1</span>
+            </div>
+            <div class="event-photo-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16l4-4 4 4 4-6 4 6"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/></svg>
+              <span>Photo 2</span>
+            </div>
+            <div class="event-photo-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16l4-4 4 4 4-6 4 6"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/></svg>
+              <span>Photo 3</span>
+            </div>
+          </div>
+          <div class="event-body">
+            <p class="event-date">March 2026</p>
+            <p class="event-title">Annual Meeting of the Linguistic Society</p>
+            <p class="event-venue">City, Country — <em>Paper presentation</em></p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="page-wrap">
+      © 2026 Your Name · Last updated March 2026
+    </div>
+  </footer>
+
+</body>
+</html>
