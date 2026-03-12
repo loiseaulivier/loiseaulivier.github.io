@@ -383,6 +383,19 @@ a:hover {
     .fade-in:nth-child(3) { animation-delay: 0.2s; }
     .fade-in:nth-child(4) { animation-delay: 0.3s; }
 
+    .event-photos figure a {
+  display: block;
+  overflow: hidden;
+}
+.event-photos figure img {
+  transition: opacity 0.2s;
+}
+.event-photos figure a:hover img {
+  opacity: 0.85;
+}
+.event-card:hover {
+  border-color: var(--accent);
+}
     /* ── RESPONSIVE ── */
     @media (max-width: 580px) {
       .header-inner { grid-template-columns: 1fr; }
