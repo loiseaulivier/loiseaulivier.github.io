@@ -505,6 +505,82 @@ a:hover {
     </div>
   </section>
 
+<!-- NEWS -->
+<section id="news">
+  <div class="page-wrap">
+    <p class="section-label">News</p>
+    <ul class="pub-list" id="news-list">
+
+      <li class="pub-item">
+        <span class="pub-year">Mar 2026</span>
+        <div>
+          <span style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;">[paper]</span>
+          Paper accepted at <em>Natural Language &amp; Linguistic Theory</em> on auxiliary switch and clitic climbing in French and Italian.
+        </div>
+      </li>
+
+      <li class="pub-item">
+        <span class="pub-year">Jan 2026</span>
+        <div>
+          <span style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;">[talk]</span>
+          Presented at the International Workshop on Romance SE/SI Constructions, Universitat de Barcelona, with Raffaella Folli.
+        </div>
+      </li>
+
+      <li class="pub-item">
+        <span class="pub-year">Jan 2026</span>
+        <div>
+          <span style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;">[paper]</span>
+          New article out in <em>Revue Roumaine de Linguistique</em> (with Anna Paradís): 'A tripartition of complementizers: exploring clause size in Romance'.
+        </div>
+      </li>
+
+      <!-- HIDDEN ITEMS (shown after clicking) -->
+      <li class="pub-item news-extra" style="display:none;">
+        <span class="pub-year">Aug 2025</span>
+        <div>
+          <span style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;">[service]</span>
+          Co-organised two workshops and chaired the Awards Committee at SLE58, Université Bordeaux Montaigne.
+        </div>
+      </li>
+
+      <li class="pub-item news-extra" style="display:none;">
+        <span class="pub-year">Jun 2025</span>
+        <div>
+          <span style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;">[event]</span>
+          Organised DiGS26 at the University of Oxford. Proceedings to appear in the <em>Journal of Historical Syntax</em>.
+        </div>
+      </li>
+
+      <li class="pub-item news-extra" style="display:none;">
+        <span class="pub-year">2025</span>
+        <div>
+          <span style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;">[paper]</span>
+          Two new articles published: one in <em>Probus</em> on auxiliary selection in French, one in <em>Journal of Historical Syntax</em> on clitic placement with infinitives.
+        </div>
+      </li>
+
+    </ul>
+
+    <button onclick="
+      document.querySelectorAll('.news-extra').forEach(el => el.style.display = 'grid');
+      this.style.display = 'none';
+    " style="
+      margin-top: 1.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    ">Older news ↓</button>
+
+  </div>
+</section>
+  
   <!-- RESEARCH -->
   <section id="research">
     <div class="page-wrap">
