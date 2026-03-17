@@ -417,7 +417,7 @@ a:hover {
         <li><a href="#" onclick="showSection('talks');return false;" data-section="talks">Talks</a></li>
         <li><a href="#" onclick="showSection('teaching');return false;" data-section="teaching">Teaching</a></li>
         <li><a href="#" onclick="showSection('events');return false;" data-section="events">Events</a></li>
-        <li><a href="https://m-olivierloiseau.github.io/textoscopia/" target="_blank" class="nav-textoscopia">Textoscopia ↗</a></li>
+        <li><a href="https://m-olivierloiseau.com/textoscopia/" target="_blank" class="nav-textoscopia">Textoscopia ↗</a></li>
       </ul>
     </div>
   </nav>
@@ -557,11 +557,10 @@ a:hover {
     </ul>
     <button onclick="document.querySelectorAll('.news-extra').forEach(el => el.style.display = 'grid');this.style.display='none';" style="margin-top:1.2rem;font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:none;border:none;cursor:pointer;padding:0;">Older news ↓</button>
   </div>
-</section>
 
-  <!-- RESEARCH -->
-  <section id="research">
-    <div class="page-wrap">
+  <!-- RESEARCH — inside home section -->
+  <div id="research" style="border-top: 1px solid var(--rule);">
+    <div class="page-wrap" style="padding-top: 4rem; padding-bottom: 4rem;">
       <p class="section-label">Research</p>
       <p>My research investigates the formal properties of natural language, drawing on corpus linguistics, diachronic data, and cross-linguistic comparison. Past and current projects include:</p>
       <div class="research-grid">
@@ -576,9 +575,9 @@ a:hover {
         <div class="research-card"><h3>Greek</h3><p>In my book I compare clitic placement across Greek varieties (Standard, Pontic, Cypriot, Italiot, and Tsakonian). My collaboration with Christina Sevdali explores patterns of clitic doubling across clausal domains in Standard Greek.</p></div>
       </div>
     </div>
-  
-    </div>
-  </section>
+  </div>
+
+  </section><!-- end #home -->
 
   <!-- PUBLICATIONS -->
   <section id="publications" class="page-section">
