@@ -69,7 +69,7 @@ a:hover {
       color: var(--ink);
       text-decoration: none;
     }
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
     .nav-links a {
       font-family: 'DM Mono', monospace;
       font-size: 0.8rem;
@@ -302,7 +302,6 @@ a:hover {
     }
     .event-card:hover { border-color: var(--accent); }
 
-    /* The photo strip: 3-column grid */
     .event-photos {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -310,7 +309,6 @@ a:hover {
       background: var(--rule);
     }
 
-    /* Each figure sits in one grid cell and stacks image + caption */
     .event-photos figure {
       margin: 0;
       display: flex;
@@ -334,25 +332,6 @@ a:hover {
       object-fit: cover;
       width: 100%;
       display: block;
-    }
-
-    .event-photo-placeholder {
-      aspect-ratio: 4/3;
-      background: var(--highlight);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: var(--muted);
-    }
-    .event-photo-placeholder svg { width: 22px; height: 22px; opacity: 0.35; }
-    .event-photo-placeholder span {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0.6;
     }
 
     .event-body { padding: 1.2rem 1.4rem; }
@@ -388,19 +367,35 @@ a:hover {
     .fade-in:nth-child(3) { animation-delay: 0.2s; }
     .fade-in:nth-child(4) { animation-delay: 0.3s; }
 
-    .event-photos figure a {
-  display: block;
-  overflow: hidden;
-}
-.event-photos figure img {
-  transition: opacity 0.2s;
-}
-.event-photos figure a:hover img {
-  opacity: 0.85;
-}
-.event-card:hover {
-  border-color: var(--accent);
-}
+    .event-photos figure a { display: block; overflow: hidden; }
+    .event-photos figure img { transition: opacity 0.2s; }
+    .event-photos figure a:hover img { opacity: 0.85; }
+
+
+    /* ── TEXTOSCOPIA NAV LINK ── */
+    .nav-textoscopia {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent) !important;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      border-radius: 3px;
+      padding: 0.2rem 0.55rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-textoscopia:hover {
+      background: var(--accent);
+      color: var(--paper) !important;
+      text-decoration: none !important;
+    }
+    .nav-links a.nav-active {
+      color: var(--accent);
+    }
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 580px) {
       .header-inner { grid-template-columns: 1fr; }
@@ -417,12 +412,12 @@ a:hover {
     <div class="page-wrap">
       <a href="#" class="nav-name">Dr Olivier-Loiseau</a>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#talks">Talks</a></li>
-        <li><a href="#teaching">Teaching</a></li>
-        <li><a href="#events">Events</a></li>
+        <li><a href="#" onclick="showSection('home');return false;" data-section="home">Home</a></li>
+        <li><a href="#" onclick="showSection('publications');return false;" data-section="publications">Publications</a></li>
+        <li><a href="#" onclick="showSection('talks');return false;" data-section="talks">Talks</a></li>
+        <li><a href="#" onclick="showSection('teaching');return false;" data-section="teaching">Teaching</a></li>
+        <li><a href="#" onclick="showSection('events');return false;" data-section="events">Events</a></li>
+        <li><a href="https://m-olivierloiseau.github.io/textoscopia/" target="_blank" class="nav-textoscopia">Textoscopia ↗</a></li>
       </ul>
     </div>
   </nav>
@@ -446,33 +441,14 @@ a:hover {
     </div>
   </header>
 
-  <!-- ABOUT -->
-  <section id="about">
+  <section id="home" class="page-section">
+    <!-- ABOUT -->
+    <div id="about">
     <div class="page-wrap">
       <p class="section-label">About</p>
-      <p>
-        I am a Postdoctoral Research Fellow at Trinity College Dublin, funded by
-        <a href="https://research.ie/funding/goipd/" style="color: var(--accent);">Taighde Éireann – Research Ireland</a>.
-        My work investigates the structural foundations of language variation, with particular attention to the interplay between diachrony, 
-        microvariation, and grammatical architecture. Two core questions drive my research agenda: why word order changes over time, 
-        and why closely related languages develop distinct properties. My primary area of expertise is in formal Romance syntax, 
-        and I have worked on a range of varieties including Old and Modern French, Old Occitan, Old and Modern Italian, Old Sardinian, 
-        Old and Modern Catalan, and Romanian, as well as Standard Greek and the Amazigh languages.
-      </p>
-      <p>
-        I am an Associate Member of the
-        <a href="https://www.ling-phil.ox.ac.uk/" style="color: var(--accent);">Faculty of Linguistics, Philology and Phonetics</a>
-        at the University of Oxford, and an Associate Researcher of the
-        <a href="https://www.mfo.ac.uk" style="color: var(--accent);">Maison Française d'Oxford</a>.
-        I sit on the Executive Committee of the
-        <a href="https://societaslinguistica.eu" style="color: var(--accent);">Societas Linguistica Europaea</a>.
-      </p>
-      <p>
-        Before joining TCD, I was a Lecturer in French Linguistics at the University of Oxford,
-        where I served as Linguistics Organising Tutor at St John's College,
-        St Catherine's College, and Pembroke College. I previously taught at Queen's University Belfast
-        and Ulster University. I have a MSc and a PhD in Linguistics.
-      </p>
+      <p>I am a Postdoctoral Research Fellow at Trinity College Dublin, funded by <a href="https://research.ie/funding/goipd/" style="color: var(--accent);">Taighde Éireann – Research Ireland</a>. My work investigates the structural foundations of language variation, with particular attention to the interplay between diachrony, microvariation, and grammatical architecture. Two core questions drive my research agenda: why word order changes over time, and why closely related languages develop distinct properties. My primary area of expertise is in formal Romance syntax, and I have worked on a range of varieties including Old and Modern French, Old Occitan, Old and Modern Italian, Old Sardinian, Old and Modern Catalan, and Romanian, as well as Standard Greek and the Amazigh languages.</p>
+      <p>I am an Associate Member of the <a href="https://www.ling-phil.ox.ac.uk/" style="color: var(--accent);">Faculty of Linguistics, Philology and Phonetics</a> at the University of Oxford, and an Associate Researcher of the <a href="https://www.mfo.ac.uk" style="color: var(--accent);">Maison Française d'Oxford</a>. I sit on the Executive Committee of the <a href="https://societaslinguistica.eu" style="color: var(--accent);">Societas Linguistica Europaea</a>.</p>
+      <p>Before joining TCD, I was a Lecturer in French Linguistics at the University of Oxford, where I served as Linguistics Organising Tutor at St John's College, St Catherine's College, and Pembroke College. I previously taught at Queen's University Belfast and Ulster University. I have a MSc and a PhD in Linguistics.</p>
       <div class="contact-grid" style="margin-top: 2rem;">
         <div class="contact-item">
           <p class="contact-label">Email</p>
@@ -493,32 +469,28 @@ a:hover {
           <p class="contact-label">Office</p>
           <p class="contact-value">Room 3129<br>Department of Linguistics<br>Arts Building<br>Trinity College Dublin<br>Dublin, Ireland</p>
         </div>
-
         <div class="contact-item">
-  <p class="contact-label">Genealogy</p>
-  <div class="avatar-block fade-in">
-    <div class="avatar"><a href="genealogy2.png" target="_blank"><img src="genealogy2.png" alt="Academic genealogy" style="object-position: bottom center;"></a></div>
-  </div>
-</div>
-        
+          <p class="contact-label">Genealogy</p>
+          <div class="avatar-block fade-in">
+            <div class="avatar"><a href="genealogy2.png" target="_blank"><img src="genealogy2.png" alt="Academic genealogy" style="object-position: bottom center;"></a></div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+    </div>
 
-<!-- NEWS -->
-<section id="news">
+    <!-- NEWS -->
+    <div id="news" style="padding: 4rem 0; border-top: 1px solid var(--rule);">
   <div class="page-wrap">
     <p class="section-label">News</p>
     <ul class="pub-list" id="news-list">
-
-            <li class="pub-item">
+      <li class="pub-item">
         <span class="pub-year">Aug 2025</span>
         <div>
           <span style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;">[event]</span>
           Co-organising two workshops at <a href="https://societaslinguistica.eu/sle2026/">SLE59</a>: on one clitics (by myself), and the outreach session (with Alexandru Nicolae).
         </div>
       </li>
-      
       <li class="pub-item">
         <span class="pub-year">May 2026</span>
         <div>
@@ -526,23 +498,20 @@ a:hover {
           I will give two talks at <a href="https://sites.google.com/view/cgg35barcelona/home?authuser=0">CGG35</a>: one on clitic placement in Old Occitan &amp; Old Catalan, and one on clitic doubling in Greek.
         </div>
       </li>
-
-        <li class="pub-item">
+      <li class="pub-item">
         <span class="pub-year">May 2026</span>
         <div>
           <span style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;">[event]</span>
-          I am organising the <a href="https://sites.google.com/view/grams-workshop">GRAMS</a> workshop in Dublin. 
+          I am organising the <a href="https://sites.google.com/view/grams-workshop">GRAMS</a> workshop in Dublin.
         </div>
       </li>
-
-            <li class="pub-item">
+      <li class="pub-item">
         <span class="pub-year">Apr 2026</span>
         <div>
           <span style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;">[talk]</span>
           I will give a talk on the structure of Old Occitan infinitival clauses at the <a href="https://crisco.unicaen.fr/evenement/synchronic-and-diachronic-syntax-of-occitan/">Synchronic and diachronic syntax of Occitan</a> conference in Caen.
         </div>
       </li>
-      
       <li class="pub-item">
         <span class="pub-year">Mar 2026</span>
         <div>
@@ -550,7 +519,6 @@ a:hover {
           Paper accepted at <em>Natural Language &amp; Linguistic Theory</em> on auxiliary switch and clitic climbing in French and Italian.
         </div>
       </li>
-
       <li class="pub-item">
         <span class="pub-year">Jan 2026</span>
         <div>
@@ -558,7 +526,6 @@ a:hover {
           Presented at the <a href="https://filcat.ub.edu/international-workshop-on-romance-se-si-constructions">International Workshop on Romance SE/SI Constructions</a>, Universitat de Barcelona, with Raffaella Folli.
         </div>
       </li>
-
       <li class="pub-item">
         <span class="pub-year">Jan 2026</span>
         <div>
@@ -566,8 +533,6 @@ a:hover {
           New article accepted in <em>Revue Roumaine de Linguistique</em> (with Anna Paradís): 'A tripartition of complementizers: exploring clause size in Romance'.
         </div>
       </li>
-
-      <!-- HIDDEN ITEMS (shown after clicking) -->
       <li class="pub-item news-extra" style="display:none;">
         <span class="pub-year">Aug 2025</span>
         <div>
@@ -575,7 +540,6 @@ a:hover {
           Co-organised two workshops and chaired the Awards Committee at <a href="https://societaslinguistica.eu/sle2025/">SLE58</a>, Université Bordeaux Montaigne.
         </div>
       </li>
-
       <li class="pub-item news-extra" style="display:none;">
         <span class="pub-year">Jun 2025</span>
         <div>
@@ -583,7 +547,6 @@ a:hover {
           Organised <a href="https://sites.google.com/view/digs26oxford/home">DiGS26</a> at the University of Oxford. Proceedings to appear in the <em>Journal of Historical Syntax</em>.
         </div>
       </li>
-
       <li class="pub-item news-extra" style="display:none;">
         <span class="pub-year">2025</span>
         <div>
@@ -591,962 +554,241 @@ a:hover {
           Two new articles published: one in <em>Probus</em> on auxiliary selection in French, one in <em>Journal of Historical Syntax</em> on clitic placement with infinitives.
         </div>
       </li>
-
     </ul>
-
-    <button onclick="
-      document.querySelectorAll('.news-extra').forEach(el => el.style.display = 'grid');
-      this.style.display = 'none';
-    " style="
-      margin-top: 1.2rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    ">Older news ↓</button>
-
+    <button onclick="document.querySelectorAll('.news-extra').forEach(el => el.style.display = 'grid');this.style.display='none';" style="margin-top:1.2rem;font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:none;border:none;cursor:pointer;padding:0;">Older news ↓</button>
   </div>
 </section>
-  
+
   <!-- RESEARCH -->
   <section id="research">
     <div class="page-wrap">
       <p class="section-label">Research</p>
-      <p>
-        My research investigates the formal properties of natural language, drawing on corpus linguistics,
-        diachronic data, and cross-linguistic comparison. Past and current projects include:
-      </p>
+      <p>My research investigates the formal properties of natural language, drawing on corpus linguistics, diachronic data, and cross-linguistic comparison. Past and current projects include:</p>
       <div class="research-grid">
-        <div class="research-card">
-          <h3>Clitics</h3>
-          <p>My work on clitic placement investigates the proclisis-enclisis alternation in finite and non-finite clauses (in 
-            the history of French and in other Romance languages), and patterns of clitic climbing, reduplication, and interpolation.
-            I am also interested in the nature of clitic doubling (mainly in Greek) and its consequences on theories of clitic placement.
-        </p>
-        </div>
-        <div class="research-card">
-          <h3>Auxiliaries</h3>
-          <p>My Probus article offers a minimalist analysis of auxiliary selection in French, where I argue against 
-            the traditional hypothesis that argument structure 'decides'. In my NLLT paper, I apply my framework to 
-            auxiliary switch, with new data from the diachrony of French and in comparison with Italian.
-          </p>
-        </div>
-                <div class="research-card">
-          <h3>Complementizers</h3>
-          <p>I observed that some infinitival complementizers (<em>a/de</em>) are merged low. 
-          In work co-authored with Anna Paradís, we draw on pan-Romance data to argue that 'prepositional complementizers'
-          can be either true P or true C. When they are the latter, we show that they can be merged in the following domains:
-          CP, IP, or vP.</p>
-        </div>
-        <div class="research-card">
-          <h3>Restructuring</h3>
-          <p>While my work argues against the existence of 'restructuring', it looks at clause size and long distance phenomena.
-          My research focuses on clitic climbing, auxiliary switch, infinitival complementizers, and the 'know how to' construction.
-          I also include cases of infinitive fronting of the type found in medieval Romance.</p>
-        </div>
-         <div class="research-card">
-          <h3>Agree</h3>
-          <p>I defend the view that formal features can be specified with subfeatures (or rather, subvalues). My formal work
-          on auxiliary selection proposes that Agree tracks indices of person features and questions the notion of argument identity.</p>
-        </div>
-          <div class="research-card">
-          <h3>Passives &amp; Impersonals</h3>
-          <p>This collaboration with Raffaella Folli questions the nature of <em>se</em>-constructions in French, in comparison with Italian.
-          We aim at contributing to the issue of differentiating passives from impersonals.</p>
-        </div>
-        <div class="research-card">
-          <h3>Old French &amp; Old Occitan</h3>
-          <p>My work on these languages is quantitative and involves corpus linguistics.
-          I document and quantify morphosyntactic constructions to analyse patterns of change
-          and variation, within and between the two languages.</p>
-        </div>
-          <div class="research-card">
-          <h3>Comparative Romance syntax</h3>
-          <p>Much of my work documents and analyses the Romance language, with the systematic inclusion of minoritised varieties.
-          I am fascinated by the mechanisms behind the fragmentation of Latin into a multitude of languages.</p>
-        </div>
-          <div class="research-card">
-          <h3>Greek</h3>
-          <p>In my book I compare clitic placement across Greek varieties (Standard, Pontic, Cypriot, Italiot, and Tsakonian). 
-            My collaboration with Christina Sevdali explores patterns
-            of clitic doubling across clausal domains in Standard Greek.
-          </p>
-        </div>
+        <div class="research-card"><h3>Clitics</h3><p>My work on clitic placement investigates the proclisis-enclisis alternation in finite and non-finite clauses (in the history of French and in other Romance languages), and patterns of clitic climbing, reduplication, and interpolation. I am also interested in the nature of clitic doubling (mainly in Greek) and its consequences on theories of clitic placement.</p></div>
+        <div class="research-card"><h3>Auxiliaries</h3><p>My Probus article offers a minimalist analysis of auxiliary selection in French, where I argue against the traditional hypothesis that argument structure 'decides'. In my NLLT paper, I apply my framework to auxiliary switch, with new data from the diachrony of French and in comparison with Italian.</p></div>
+        <div class="research-card"><h3>Complementizers</h3><p>I observed that some infinitival complementizers (<em>a/de</em>) are merged low. In work co-authored with Anna Paradís, we draw on pan-Romance data to argue that 'prepositional complementizers' can be either true P or true C. When they are the latter, we show that they can be merged in the following domains: CP, IP, or vP.</p></div>
+        <div class="research-card"><h3>Restructuring</h3><p>While my work argues against the existence of 'restructuring', it looks at clause size and long distance phenomena. My research focuses on clitic climbing, auxiliary switch, infinitival complementizers, and the 'know how to' construction. I also include cases of infinitive fronting of the type found in medieval Romance.</p></div>
+        <div class="research-card"><h3>Agree</h3><p>I defend the view that formal features can be specified with subfeatures (or rather, subvalues). My formal work on auxiliary selection proposes that Agree tracks indices of person features and questions the notion of argument identity.</p></div>
+        <div class="research-card"><h3>Passives &amp; Impersonals</h3><p>This collaboration with Raffaella Folli questions the nature of <em>se</em>-constructions in French, in comparison with Italian. We aim at contributing to the issue of differentiating passives from impersonals.</p></div>
+        <div class="research-card"><h3>Old French &amp; Old Occitan</h3><p>My work on these languages is quantitative and involves corpus linguistics. I document and quantify morphosyntactic constructions to analyse patterns of change and variation, within and between the two languages.</p></div>
+        <div class="research-card"><h3>Comparative Romance syntax</h3><p>Much of my work documents and analyses the Romance language, with the systematic inclusion of minoritised varieties. I am fascinated by the mechanisms behind the fragmentation of Latin into a multitude of languages.</p></div>
+        <div class="research-card"><h3>Greek</h3><p>In my book I compare clitic placement across Greek varieties (Standard, Pontic, Cypriot, Italiot, and Tsakonian). My collaboration with Christina Sevdali explores patterns of clitic doubling across clausal domains in Standard Greek.</p></div>
       </div>
+    </div>
+  
     </div>
   </section>
 
   <!-- PUBLICATIONS -->
-  <section id="publications">
+  <section id="publications" class="page-section">
     <div class="page-wrap">
       <p class="section-label">Publications</p>
-
       <p class="level-heading" style="margin-top: 0;">Book</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">Forthcoming</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span>  Clitic Placement in the History of French</p>
-            <p class="pub-venue">Under contract. <em>Oxford Studies in Diachronic and Historical Linguistics.</em> Oxford University Press.</p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">Forthcoming</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Clitic Placement in the History of French</p><p class="pub-venue">Under contract. <em>Oxford Studies in Diachronic and Historical Linguistics.</em> Oxford University Press.</p></div></li>
       </ul>
-
       <p class="level-heading">Peer-Reviewed Journal Articles</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">Accepted</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Agree in restructuring: evidence from auxiliary switch and clitic climbing in French and Italian</p>
-            <p class="pub-venue"><em>Natural Language &amp; Linguistic Theory.</em></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2026</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Paradís, Anna. </span> A tripartition of complementizers: exploring clause size in Romance</p>
-            <p class="pub-venue">Adina Dragomirescu &amp; Alexandru Nicolae (eds.), <em>Theoretical and Empirical issues in the study of clause size</em>. Special issue of <em>Revue Roumaine de Linguistique</em>. <a class="pub-link" href="https://ling.auf.net/lingbuzz/009672">Preprint ↗</a></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> A syntactic account of auxiliary selection in French</p>
-            <p class="pub-venue"><em>Probus, 37(2), pp. 163–197. DOI: 10.1515/probus-2024-0005</em> <a class="pub-link" href="https://doi.org/10.1515/probus-2024-0005">Article ↗</a></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Clitic placement with infinitives in the diachrony of French: from enclisis to proclisis</p>
-            <p class="pub-venue"><em>Journal of Historical Syntax, 9, pp. 1–45. DOI: 10.18148/hs/2025.v9i2-10.212</em> <a class="pub-link" href="https://doi.org/10.18148/hs/2025.v9i2-10.212">Article ↗</a></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2024</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Sevdali, Christina &amp; Folli, Raffaella.</span> Infinitive fronting as a transparency effect in Old and Middle French</p>
-            <p class="pub-venue">Jan Casalicchio &amp; Peter Herbeck (eds.), <em>New perspectives on the syntax of causative and restructuring verbs in Romance</em>. Special issue of <em>Isogloss: Open Journal of Romance Linguistics</em>, 10(4), pp. 1–27. DOI: 10.5565/rev/isogloss.314<a class="pub-link" href="https://doi.org/10.5565/rev/isogloss.314">Article ↗</a></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Sevdali, Christina &amp; Folli, Raffaella.</span> Clitic climbing and restructuring in the history of French</p>
-            <p class="pub-venue"><em>Glossa: a journal of general linguistics</em>, 8(1), pp. 1–45. DOI: 10.16995/glossa.10135 <a class="pub-link" href="https://doi.org/10.16995/glossa.10135">Article ↗</a></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2022</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Diachronie de la proclise et de l'enclise avec l'infinitif en français médiéval (12e–15e s.)</p>
-            <p class="pub-venue">Mathieu Goux (ed.) <em>Le temps long: l'évolution du français dans un corpus textuel calibré. Le témoignage de la coutume de Normandie.</em> Special issue of <em>Studia Linguistica Romanica</em>, 8, pp. 10–35. DOI: 10.25364 /19.2022.8.2  <a class="pub-link" href="https://doi.org/10.25364/19.2022.8.2">Article ↗</a></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2021</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Language in time: assessing Medieval French registers in a quest for accuracy in historical linguistics</p>
-            <p class="pub-venue"><em>French Studies Bulletin</em>, 42(159), pp. 23–27. DOI: 10.1093/frebul/ktab012 <a class="pub-link" href="https://doi.org/10.1093/frebul/ktab012">Article ↗</a></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2019</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> From Old French to French: Language as a Living Puzzle</p>
-            <p class="pub-venue"><em>Intersections, Postgraduate Journal</em>, 1(1), pp. 40–43.</p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">Accepted</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Agree in restructuring: evidence from auxiliary switch and clitic climbing in French and Italian</p><p class="pub-venue"><em>Natural Language &amp; Linguistic Theory.</em></p></div></li>
+        <li class="pub-item"><span class="pub-year">2026</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Paradís, Anna.</span> A tripartition of complementizers: exploring clause size in Romance</p><p class="pub-venue">Adina Dragomirescu &amp; Alexandru Nicolae (eds.), <em>Theoretical and Empirical issues in the study of clause size</em>. Special issue of <em>Revue Roumaine de Linguistique</em>. <a class="pub-link" href="https://ling.auf.net/lingbuzz/009672">Preprint ↗</a></p></div></li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> A syntactic account of auxiliary selection in French</p><p class="pub-venue"><em>Probus, 37(2), pp. 163–197. DOI: 10.1515/probus-2024-0005</em> <a class="pub-link" href="https://doi.org/10.1515/probus-2024-0005">Article ↗</a></p></div></li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Clitic placement with infinitives in the diachrony of French: from enclisis to proclisis</p><p class="pub-venue"><em>Journal of Historical Syntax, 9, pp. 1–45. DOI: 10.18148/hs/2025.v9i2-10.212</em> <a class="pub-link" href="https://doi.org/10.18148/hs/2025.v9i2-10.212">Article ↗</a></p></div></li>
+        <li class="pub-item"><span class="pub-year">2024</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Sevdali, Christina &amp; Folli, Raffaella.</span> Infinitive fronting as a transparency effect in Old and Middle French</p><p class="pub-venue">Jan Casalicchio &amp; Peter Herbeck (eds.), <em>New perspectives on the syntax of causative and restructuring verbs in Romance</em>. Special issue of <em>Isogloss: Open Journal of Romance Linguistics</em>, 10(4), pp. 1–27. DOI: 10.5565/rev/isogloss.314 <a class="pub-link" href="https://doi.org/10.5565/rev/isogloss.314">Article ↗</a></p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Sevdali, Christina &amp; Folli, Raffaella.</span> Clitic climbing and restructuring in the history of French</p><p class="pub-venue"><em>Glossa: a journal of general linguistics</em>, 8(1), pp. 1–45. DOI: 10.16995/glossa.10135 <a class="pub-link" href="https://doi.org/10.16995/glossa.10135">Article ↗</a></p></div></li>
+        <li class="pub-item"><span class="pub-year">2022</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Diachronie de la proclise et de l'enclise avec l'infinitif en français médiéval (12e–15e s.)</p><p class="pub-venue">Mathieu Goux (ed.) <em>Le temps long: l'évolution du français dans un corpus textuel calibré.</em> Special issue of <em>Studia Linguistica Romanica</em>, 8, pp. 10–35. DOI: 10.25364/19.2022.8.2 <a class="pub-link" href="https://doi.org/10.25364/19.2022.8.2">Article ↗</a></p></div></li>
+        <li class="pub-item"><span class="pub-year">2021</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Language in time: assessing Medieval French registers in a quest for accuracy in historical linguistics</p><p class="pub-venue"><em>French Studies Bulletin</em>, 42(159), pp. 23–27. DOI: 10.1093/frebul/ktab012 <a class="pub-link" href="https://doi.org/10.1093/frebul/ktab012">Article ↗</a></p></div></li>
+        <li class="pub-item"><span class="pub-year">2019</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> From Old French to French: Language as a Living Puzzle</p><p class="pub-venue"><em>Intersections, Postgraduate Journal</em>, 1(1), pp. 40–43.</p></div></li>
       </ul>
-
       <p class="level-heading">Book Chapters</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">In prep.</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Paradís, Anna.</span> Restructuring in the Gallo-Ibero-Romance continuum: patterns of variation and contact</p>
-            <p class="pub-venue">Adam Ledgeway &amp; Norma Schifano (eds.), <em>Morphosyntactic variation and change under contact.</em> Oxford University Press.</p>
-          </div>
-        </li>
-         <li class="pub-item">
-          <span class="pub-year">Subm.</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Paradís, Anna &amp; Olivier, Marc.</span> Clitic placement along the French, Occitan, and Catalan medieval continuum</p>
-            <p class="pub-venue">Mar Garachana &amp; Andreu Sentí (eds.), <em>Ibero- and Gallo-Romance through time.</em> De Gruyter.</p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">In prep.</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Paradís, Anna.</span> Restructuring in the Gallo-Ibero-Romance continuum: patterns of variation and contact</p><p class="pub-venue">Adam Ledgeway &amp; Norma Schifano (eds.), <em>Morphosyntactic variation and change under contact.</em> Oxford University Press.</p></div></li>
+        <li class="pub-item"><span class="pub-year">Subm.</span><div><p class="pub-title"><span class="pub-authors">Paradís, Anna &amp; Olivier, Marc.</span> Clitic placement along the French, Occitan, and Catalan medieval continuum</p><p class="pub-venue">Mar Garachana &amp; Andreu Sentí (eds.), <em>Ibero- and Gallo-Romance through time.</em> De Gruyter.</p></div></li>
       </ul>
-
       <p class="level-heading">Edited Special Issues</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">In prep.</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Pujol i Campeny, Afra &amp; Olivier, Marc.</span> Crosslinguistic perspectives on syntactic change in the diachrony of Romance</p>
-            <p class="pub-venue">Special issue of <em>Catalan Journal of Linguistics.</em></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">In prep.</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Pujol i Campeny, Afra.</span> Romance languages and historical syntax: emerging perspectives</p>
-            <p class="pub-venue">Special issue of <em>Studia Linguistica.</em></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">In prep.</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Pujol i Campeny, Afra &amp; Paradís, Anna.</span> Proceedings of DiGS26</p>
-            <p class="pub-venue">Special issue of <em>Journal of Historical Linguistics.</em></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Paradís, Anna.</span> Researching Occitan in the 21st Century: un dialòg interdisciplinari</p>
-            <p class="pub-venue">Special issue of <em>Revue Romane, 60(1). DOI: 10.1075/rro.00040.oli</em> <a class="pub-link" href="https://doi.org/10.1075/rro.60.1">READ ↗</a></p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">In prep.</span><div><p class="pub-title"><span class="pub-authors">Pujol i Campeny, Afra &amp; Olivier, Marc.</span> Crosslinguistic perspectives on syntactic change in the diachrony of Romance</p><p class="pub-venue">Special issue of <em>Catalan Journal of Linguistics.</em></p></div></li>
+        <li class="pub-item"><span class="pub-year">In prep.</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Pujol i Campeny, Afra.</span> Romance languages and historical syntax: emerging perspectives</p><p class="pub-venue">Special issue of <em>Studia Linguistica.</em></p></div></li>
+        <li class="pub-item"><span class="pub-year">In prep.</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Pujol i Campeny, Afra &amp; Paradís, Anna.</span> Proceedings of DiGS26</p><p class="pub-venue">Special issue of <em>Journal of Historical Linguistics.</em></p></div></li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc &amp; Paradís, Anna.</span> Researching Occitan in the 21st Century: un dialòg interdisciplinari</p><p class="pub-venue">Special issue of <em>Revue Romane, 60(1). DOI: 10.1075/rro.00040.oli</em> <a class="pub-link" href="https://doi.org/10.1075/rro.60.1">READ ↗</a></p></div></li>
       </ul>
-
       <p class="level-heading">Book Review</p>
       <ul class="pub-list">
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Review of Goux &amp; Mounier (eds.), <em>La corrélation en diachronie longue</em></p><p class="pub-venue"><em>Revue de Linguistique Romane, 89, pp. 262–266.</em> DOI: 10.46277/rlir.2025.262-266</p></div></li>
+      </ul>
+      <p class="level-heading">Software</p>
+      <ul class="pub-list">
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Textoscopia: A Simple Browser-Based Tool for Corpus Linguistics Analysis</p><p class="pub-venue"><em>Zenodo.</em> DOI: 10.5281/zenodo.19071710 <a class="pub-link" href="https://doi.org/10.5281/zenodo.19071710">Zenodo ↗</a> <a class="pub-link" href="https://m-olivierloiseau.github.io/textoscopia/" target="_blank">Open tool ↗</a></p></div></li>
+      </ul>
+      <p class="level-heading">Theses</p>
+      <ul class="pub-list">
+        <li class="pub-item"><span class="pub-year">2022</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> A Corpus Study of Clitic Placement with Infinitives in the Diachrony of French</p><p class="pub-venue">PhD Thesis, Ulster University. <a class="pub-link" href="https://ling.auf.net/lingbuzz/006685">Download ↗</a></p></div></li>
+        <li class="pub-item"><span class="pub-year">2018</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> A Diachronic Study of Proclisis-Enclisis Alternation on Infinitives and Imperatives in Old French</p><p class="pub-venue">Master's Thesis, Ulster University.</p></div></li>
+      </ul>
+      <p class="level-heading">Software</p>
+      <ul class="pub-list">
         <li class="pub-item">
           <span class="pub-year">2025</span>
           <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Review of Goux &amp; Mounier (eds.), <em>La corrélation en diachronie longue</em></p>
-            <p class="pub-venue"><em>Revue de Linguistique Romane, 89, pp. 262–266.</em> DOI: 10.46277/rlir.2025.262-266</p>
-          </div>
-        </li>
-      </ul>
-
-      <p class="level-heading">Theses</p>
-      <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">2022</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> A Corpus Study of Clitic Placement with Infinitives in the Diachrony of French</p>
-            <p class="pub-venue">PhD Thesis, Ulster University. <a class="pub-link" href="https://ling.auf.net/lingbuzz/006685">Download ↗</a></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2018</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> A Diachronic Study of Proclisis-Enclisis Alternation on Infinitives and Imperatives in Old French</p>
-            <p class="pub-venue">Master's Thesis, Ulster University.</p>
+            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Textoscopia: A Simple Browser-Based Tool for Corpus Linguistics Analysis</p>
+            <p class="pub-venue"><em>Zenodo.</em> DOI: 10.5281/zenodo.19071710 <a class="pub-link" href="https://doi.org/10.5281/zenodo.19071710">Tool ↗</a> <a class="pub-link" href="https://m-olivierloiseau.github.io/textoscopia/" target="_blank">Open tool ↗</a></p>
           </div>
         </li>
       </ul>
 
       <p class="level-heading">Blog Post</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">2020</span>
-          <div>
-            <p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Change Is On Its Way</p>
-            <p class="pub-venue">Institute of Modern Languages Research blog. <a class="pub-link" href="https://modernlanguagesresearch.blogs.sas.ac.uk/2020/06/11/change-is-on-its-way/">Read ↗</a></p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">2020</span><div><p class="pub-title"><span class="pub-authors">Olivier, Marc.</span> Change Is On Its Way</p><p class="pub-venue">Institute of Modern Languages Research blog. <a class="pub-link" href="https://modernlanguagesresearch.blogs.sas.ac.uk/2020/06/11/change-is-on-its-way/">Read ↗</a></p></div></li>
       </ul>
-
     </div>
   </section>
 
   <!-- TALKS -->
-  <section id="talks">
+  <section id="talks" class="page-section">
     <div class="page-wrap">
       <p class="section-label">Talks &amp; Presentations</p>
-
       <p class="level-heading" style="margin-top: 0;">Invited Talks</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title">À propos de la montée du clitique et de l'alternation de l'auxiliaire: nouvelles données italiennes, sardes, et françaises</p>
-            <p class="pub-venue">Journée d'études sur les clitiques dans les langues romanes. Université Sorbonne Nouvelle, France. December 11–12.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title">La variation proclise-enclise en occitan et catalan médiéval: nouvelles données et nouveaux enjeux <em>(with Anna Paradís)</em></p>
-            <p class="pub-venue">Journée d'études sur les clitiques dans les langues romanes. Université Sorbonne Nouvelle, France. December 11–12.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title">If the clitic climbs, the auxiliary switches (but not vice versa): exploring syntactic triggers in French</p>
-            <p class="pub-venue">Linguistics Research Seminar. Trinity College Dublin, Ireland. October 7.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title">Be or not be? Predicting auxiliary selection in Romance without relying (too much) on argument structure</p>
-            <p class="pub-venue">General Linguistics Seminar. Faculty of Linguistics, Philology and Phonetics, University of Oxford, UK. April 28.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title">Quelques remarques à propos des parlers gallo- et ibéro-romans : ce que les clitiques nous disent sur la typologie <em>(with Anna Paradís)</em></p>
-            <p class="pub-venue">Opération "Clitiques". Université Sorbonne Nouvelle, France. February 7.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2024</span>
-          <div>
-            <p class="pub-title">A comparative approach to theoretical issues: clause size in Romance <em>(with Anna Paradís)</em></p>
-            <p class="pub-venue">RoLinC - Romance Linguistics Circle. Universities of Cambridge and Newcastle, UK. October 29.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2024</span>
-          <div>
-            <p class="pub-title">Stressed proclitics in Middle French? Evidence that language change is driven by structural simplification</p>
-            <p class="pub-venue">Historical Syntax Seminar. Faculty of Linguistics, Philology and Phonetics, University of Oxford, UK. May 1.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">Restructuring: one phenomenon, one size? <em>(with Anna Paradís)</em></p>
-            <p class="pub-venue">Oxford Romance Linguistics Seminar. Research Centre for Romance Linguistics, University of Oxford, UK. November 16.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">Phonologically-driven syntactic change in French</p>
-            <p class="pub-venue">Oxford Romance Linguistics Seminar. Research Centre for Romance Linguistics, University of Oxford, UK. February 23.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2021</span>
-          <div>
-            <p class="pub-title">The rise of infinitival proclisis in French is independent from the loss of clitic climbing: evidence from a corpus of legal texts</p>
-            <p class="pub-venue">Linguistics Research Seminar. School of Communication and Media, Ulster University, UK. March 23.</p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title">À propos de la montée du clitique et de l'alternation de l'auxiliaire: nouvelles données italiennes, sardes, et françaises</p><p class="pub-venue">Journée d'études sur les clitiques dans les langues romanes. Université Sorbonne Nouvelle, France. December 11–12.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title">La variation proclise-enclise en occitan et catalan médiéval: nouvelles données et nouveaux enjeux <em>(with Anna Paradís)</em></p><p class="pub-venue">Journée d'études sur les clitiques dans les langues romanes. Université Sorbonne Nouvelle, France. December 11–12.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title">If the clitic climbs, the auxiliary switches (but not vice versa): exploring syntactic triggers in French</p><p class="pub-venue">Linguistics Research Seminar. Trinity College Dublin, Ireland. October 7.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title">Be or not be? Predicting auxiliary selection in Romance without relying (too much) on argument structure</p><p class="pub-venue">General Linguistics Seminar. Faculty of Linguistics, Philology and Phonetics, University of Oxford, UK. April 28.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title">Quelques remarques à propos des parlers gallo- et ibéro-romans : ce que les clitiques nous disent sur la typologie <em>(with Anna Paradís)</em></p><p class="pub-venue">Opération "Clitiques". Université Sorbonne Nouvelle, France. February 7.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2024</span><div><p class="pub-title">A comparative approach to theoretical issues: clause size in Romance <em>(with Anna Paradís)</em></p><p class="pub-venue">RoLinC - Romance Linguistics Circle. Universities of Cambridge and Newcastle, UK. October 29.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2024</span><div><p class="pub-title">Stressed proclitics in Middle French? Evidence that language change is driven by structural simplification</p><p class="pub-venue">Historical Syntax Seminar. Faculty of Linguistics, Philology and Phonetics, University of Oxford, UK. May 1.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">Restructuring: one phenomenon, one size? <em>(with Anna Paradís)</em></p><p class="pub-venue">Oxford Romance Linguistics Seminar. Research Centre for Romance Linguistics, University of Oxford, UK. November 16.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">Phonologically-driven syntactic change in French</p><p class="pub-venue">Oxford Romance Linguistics Seminar. Research Centre for Romance Linguistics, University of Oxford, UK. February 23.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2021</span><div><p class="pub-title">The rise of infinitival proclisis in French is independent from the loss of clitic climbing: evidence from a corpus of legal texts</p><p class="pub-venue">Linguistics Research Seminar. School of Communication and Media, Ulster University, UK. March 23.</p></div></li>
       </ul>
-
       <p class="level-heading">Peer-Reviewed Oral Presentations</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">2026</span>
-          <div>
-            <p class="pub-title">Clitics tossed around from syntax to PF: Tobler-Mussafia irregularities in Old Occitan &amp; Old Catalan <em>(with Anna Paradís)</em></p>
-            <p class="pub-venue">CGG35 - 35th Colloquium on Generative Grammar. Universitat de Barcelona, Catalonia. May 27–29.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title">From Wh-element to polarity item: reanalysis of 'what' in French and Romance</p>
-            <p class="pub-venue">SLE58 - Societas Linguistica Europaea. Université Bordeaux Montaigne, France. August 26–29.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2024</span>
-          <div>
-            <p class="pub-title">Towards a formal account of auxiliary switch: new data from French</p>
-            <p class="pub-venue">Going Romance 38. Universidade do Minho, Portugal. December 4–6.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2024</span>
-          <div>
-            <p class="pub-title">Être or not: Auxiliary switch in the diachrony of French</p>
-            <p class="pub-venue">ICL2024 - 21st International Congress of Linguists. Adam Mickiewicz University, Poland. September 4–8.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2024</span>
-          <div>
-            <p class="pub-title">Auxiliary switch in Italian and Romance</p>
-            <p class="pub-venue">SLE57 - Societas Linguistica Europaea. University of Helsinki, Finland. August 21–24.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2024</span>
-          <div>
-            <p class="pub-title">One size does not fit all: a comparative analysis of restructuring in Romance <em>(with Anna Paradís)</em></p>
-            <p class="pub-venue">Nouălea simpozion internațional de lingvistică. Institutul de Lingvistică, Romania. May 23–24.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2024</span>
-          <div>
-            <p class="pub-title">Exploring the morphosyntax of minoritised varieties: Restructuring in the Gallo-/Ibero-Romance continuum <em>(with Anna Paradís)</em></p>
-            <p class="pub-venue">Romance grammars, context and contact. University of Birmingham, UK. January 8–10.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">Word Order in Old Occitan: Infinitive Object Clitics</p>
-            <p class="pub-venue">Going Romance 37. Radboud University of Nijmegen, The Netherlands. November 30–December 1.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">When change fails: evidence from French</p>
-            <p class="pub-venue">ICHL26 - 26th International Conference on Historical Linguistics. University of Heidelberg, Germany. September 4–8.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">Stylistic Fronting as a Transparency Effect: new data from Old Gallo-Romance</p>
-            <p class="pub-venue">SLE56 - Societas Linguistica Europaea. National and Kapodistrian University of Athens, Greece. August 29–September 1.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">The many faces of particles: exploring clause size in Romance <em>(with Anna Paradís)</em></p>
-            <p class="pub-venue">LAGB 2023. Anglia Ruskin University, UK. August 29–September 1.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">Evidence for high infinitive placement in Old French</p>
-            <p class="pub-venue">DiGS24 - Diachronic Generative Syntax. University of Paris, France. July 5–7.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">The clausal architecture of Old French infinitival clauses</p>
-            <p class="pub-venue">LSRL53 - Linguistic Symposium on Romance Languages. Université Paris Cité / Sorbonne Nouvelle / Paris Saclay, France. June 26–30.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2022</span>
-          <div>
-            <p class="pub-title">Strong morphology, weak distribution: a case of failed change in French</p>
-            <p class="pub-venue">Going Romance 36. Universitat Autònoma de Barcelona, Spain. November 30–December 2.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2022</span>
-          <div>
-            <p class="pub-title">When do clitics cliticise?</p>
-            <p class="pub-venue">LAGB 2022. Ulster University, UK. September 14.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2022</span>
-          <div>
-            <p class="pub-title">On the losses of enclisis and clitic climbing in the diachrony of French</p>
-            <p class="pub-venue">DiGS23 - Diachronic Generative Syntax. New York University, USA. June 8–10.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2022</span>
-          <div>
-            <p class="pub-title">Chute de l'enclise infinitive en français: une étude diachronique et comparée</p>
-            <p class="pub-venue">Colloque international Diachro X. Paris Sorbonne Université, France. May 31–June 2.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2022</span>
-          <div>
-            <p class="pub-title">Restructuring without clitic climbing <em>(with Christina Sevdali &amp; Raffaella Folli)</em></p>
-            <p class="pub-venue">SCUP22 - Syntactic Conferences at the University of Palermo, Italy. May 26–27.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2022</span>
-          <div>
-            <p class="pub-title">The role of phonology in language change: evidence from clitics and infinitives in French</p>
-            <p class="pub-venue">LSRL52 - Linguistic Symposium on Romance Languages. University of Wisconsin-Madison, USA. April 21–23.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2022</span>
-          <div>
-            <p class="pub-title">Diachrony and directionality of clitic placement in Romance: evidence from French</p>
-            <p class="pub-venue">PLC46 - Penn Linguistics Conference. University of Pennsylvania, USA. March 18–20.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2021</span>
-          <div>
-            <p class="pub-title">Clitic placement with infinitives in the diachrony of French <em>(with Christina Sevdali &amp; Raffaella Folli)</em></p>
-            <p class="pub-venue">LAGB 2021. Online. September 8.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2021</span>
-          <div>
-            <p class="pub-title">Preinfinitival strong pronouns in Medieval French: reconsideration and loss</p>
-            <p class="pub-venue">mFiL - Manchester Forum in Linguistics. University of Manchester, UK. April 28–29.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2020</span>
-          <div>
-            <p class="pub-title">Étude de la diachronie du français : constituer un corpus de textes légaux</p>
-            <p class="pub-venue">Society for French Studies. Online. July 29.</p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">2026</span><div><p class="pub-title">Clitics tossed around from syntax to PF: Tobler-Mussafia irregularities in Old Occitan &amp; Old Catalan <em>(with Anna Paradís)</em></p><p class="pub-venue">CGG35 - 35th Colloquium on Generative Grammar. Universitat de Barcelona, Catalonia. May 27–29.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title">From Wh-element to polarity item: reanalysis of 'what' in French and Romance</p><p class="pub-venue">SLE58 - Societas Linguistica Europaea. Université Bordeaux Montaigne, France. August 26–29.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2024</span><div><p class="pub-title">Towards a formal account of auxiliary switch: new data from French</p><p class="pub-venue">Going Romance 38. Universidade do Minho, Portugal. December 4–6.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2024</span><div><p class="pub-title">Être or not: Auxiliary switch in the diachrony of French</p><p class="pub-venue">ICL2024 - 21st International Congress of Linguists. Adam Mickiewicz University, Poland. September 4–8.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2024</span><div><p class="pub-title">Auxiliary switch in Italian and Romance</p><p class="pub-venue">SLE57 - Societas Linguistica Europaea. University of Helsinki, Finland. August 21–24.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2024</span><div><p class="pub-title">One size does not fit all: a comparative analysis of restructuring in Romance <em>(with Anna Paradís)</em></p><p class="pub-venue">Nouălea simpozion internațional de lingvistică. Institutul de Lingvistică, Romania. May 23–24.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2024</span><div><p class="pub-title">Exploring the morphosyntax of minoritised varieties: Restructuring in the Gallo-/Ibero-Romance continuum <em>(with Anna Paradís)</em></p><p class="pub-venue">Romance grammars, context and contact. University of Birmingham, UK. January 8–10.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">Word Order in Old Occitan: Infinitive Object Clitics</p><p class="pub-venue">Going Romance 37. Radboud University of Nijmegen, The Netherlands. November 30–December 1.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">When change fails: evidence from French</p><p class="pub-venue">ICHL26 - 26th International Conference on Historical Linguistics. University of Heidelberg, Germany. September 4–8.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">Stylistic Fronting as a Transparency Effect: new data from Old Gallo-Romance</p><p class="pub-venue">SLE56 - Societas Linguistica Europaea. National and Kapodistrian University of Athens, Greece. August 29–September 1.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">The many faces of particles: exploring clause size in Romance <em>(with Anna Paradís)</em></p><p class="pub-venue">LAGB 2023. Anglia Ruskin University, UK. August 29–September 1.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">Evidence for high infinitive placement in Old French</p><p class="pub-venue">DiGS24 - Diachronic Generative Syntax. University of Paris, France. July 5–7.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">The clausal architecture of Old French infinitival clauses</p><p class="pub-venue">LSRL53 - Linguistic Symposium on Romance Languages. Université Paris Cité / Sorbonne Nouvelle / Paris Saclay, France. June 26–30.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2022</span><div><p class="pub-title">Strong morphology, weak distribution: a case of failed change in French</p><p class="pub-venue">Going Romance 36. Universitat Autònoma de Barcelona, Spain. November 30–December 2.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2022</span><div><p class="pub-title">When do clitics cliticise?</p><p class="pub-venue">LAGB 2022. Ulster University, UK. September 14.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2022</span><div><p class="pub-title">On the losses of enclisis and clitic climbing in the diachrony of French</p><p class="pub-venue">DiGS23 - Diachronic Generative Syntax. New York University, USA. June 8–10.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2022</span><div><p class="pub-title">Chute de l'enclise infinitive en français: une étude diachronique et comparée</p><p class="pub-venue">Colloque international Diachro X. Paris Sorbonne Université, France. May 31–June 2.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2022</span><div><p class="pub-title">Restructuring without clitic climbing <em>(with Christina Sevdali &amp; Raffaella Folli)</em></p><p class="pub-venue">SCUP22 - Syntactic Conferences at the University of Palermo, Italy. May 26–27.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2022</span><div><p class="pub-title">The role of phonology in language change: evidence from clitics and infinitives in French</p><p class="pub-venue">LSRL52 - Linguistic Symposium on Romance Languages. University of Wisconsin-Madison, USA. April 21–23.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2022</span><div><p class="pub-title">Diachrony and directionality of clitic placement in Romance: evidence from French</p><p class="pub-venue">PLC46 - Penn Linguistics Conference. University of Pennsylvania, USA. March 18–20.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2021</span><div><p class="pub-title">Clitic placement with infinitives in the diachrony of French <em>(with Christina Sevdali &amp; Raffaella Folli)</em></p><p class="pub-venue">LAGB 2021. Online. September 8.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2021</span><div><p class="pub-title">Preinfinitival strong pronouns in Medieval French: reconsideration and loss</p><p class="pub-venue">mFiL - Manchester Forum in Linguistics. University of Manchester, UK. April 28–29.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2020</span><div><p class="pub-title">Étude de la diachronie du français : constituer un corpus de textes légaux</p><p class="pub-venue">Society for French Studies. Online. July 29.</p></div></li>
       </ul>
-
       <p class="level-heading">Presentations at Workshops &amp; Seminars</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">2026</span>
-          <div>
-            <p class="pub-title">The syntax of infinitives in Old Occitan: Evidence from negation, adverbs, and clitics</p>
-            <p class="pub-venue">Synchronic and diachronic syntax of Occitan. Université de Caen Normandie. April 8–10.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2026</span>
-          <div>
-            <p class="pub-title">Passive illusions: impersonal si/se in Italian and French <em>(with Raffaella Folli)</em></p>
-            <p class="pub-venue">International Workshop on Romance SE/SI Constructions. Universitat de Barcelona. January 22–23.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title">Auxiliary switch in the diachrony of French</p>
-            <p class="pub-venue">Cambridge Romance Linguistics Seminar. University of Cambridge, Trinity Hall, UK. January 4.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title">Deconstructing restructuring: new insights at the crossroads of Gallo-Romance and Ibero-Romance <em>(with Anna Paradís)</em></p>
-            <p class="pub-venue">Cambridge Romance Linguistics Seminar. University of Cambridge, Trinity Hall, UK. January 3.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">Where do clitics go in Old Gallo-Romance infinitival clauses?</p>
-            <p class="pub-venue">Occitan Studies Day. University of Oxford, Trinity College, UK. May 20.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">Infinitival morphology and clitic placement</p>
-            <p class="pub-venue">Cambridge 50th Romance Linguistics Seminar. University of Cambridge, Trinity Hall, UK. January 5.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2019</span>
-          <div>
-            <p class="pub-title">Clitic placement in Old French non-finite contexts</p>
-            <p class="pub-venue">ADEFFI Symposium. Maynooth University, Ireland. April.</p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">2026</span><div><p class="pub-title">The syntax of infinitives in Old Occitan: Evidence from negation, adverbs, and clitics</p><p class="pub-venue">Synchronic and diachronic syntax of Occitan. Université de Caen Normandie. April 8–10.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2026</span><div><p class="pub-title">Passive illusions: impersonal si/se in Italian and French <em>(with Raffaella Folli)</em></p><p class="pub-venue">International Workshop on Romance SE/SI Constructions. Universitat de Barcelona. January 22–23.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title">Auxiliary switch in the diachrony of French</p><p class="pub-venue">Cambridge Romance Linguistics Seminar. University of Cambridge, Trinity Hall, UK. January 4.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title">Deconstructing restructuring: new insights at the crossroads of Gallo-Romance and Ibero-Romance <em>(with Anna Paradís)</em></p><p class="pub-venue">Cambridge Romance Linguistics Seminar. University of Cambridge, Trinity Hall, UK. January 3.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">Where do clitics go in Old Gallo-Romance infinitival clauses?</p><p class="pub-venue">Occitan Studies Day. University of Oxford, Trinity College, UK. May 20.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">Infinitival morphology and clitic placement</p><p class="pub-venue">Cambridge 50th Romance Linguistics Seminar. University of Cambridge, Trinity Hall, UK. January 5.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2019</span><div><p class="pub-title">Clitic placement in Old French non-finite contexts</p><p class="pub-venue">ADEFFI Symposium. Maynooth University, Ireland. April.</p></div></li>
       </ul>
-
       <p class="level-heading">Poster Presentations</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">2026</span>
-          <div>
-            <p class="pub-title">Unchartered territory in Greek clitic doubling <em>(with Christina Sevdali)</em></p>
-            <p class="pub-venue">CGG35 - 35th Colloquium on Generative Grammar. Universitat de Barcelona, Catalonia. May 27–29.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2024</span>
-          <div>
-            <p class="pub-title">Restructuring beyond binary thinking: clause size variation in Romance <em>(with Anna Paradís)</em></p>
-            <p class="pub-venue">Going Romance 38. Universidade do Minho, Portugal. December 4–6.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2019</span>
-          <div>
-            <p class="pub-title">Targeting diachronic issues: a review of Old French</p>
-            <p class="pub-venue">CreteLing. University of Crete, Greece. July 18.</p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">2026</span><div><p class="pub-title">Unchartered territory in Greek clitic doubling <em>(with Christina Sevdali)</em></p><p class="pub-venue">CGG35 - 35th Colloquium on Generative Grammar. Universitat de Barcelona, Catalonia. May 27–29.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2024</span><div><p class="pub-title">Restructuring beyond binary thinking: clause size variation in Romance <em>(with Anna Paradís)</em></p><p class="pub-venue">Going Romance 38. Universidade do Minho, Portugal. December 4–6.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2019</span><div><p class="pub-title">Targeting diachronic issues: a review of Old French</p><p class="pub-venue">CreteLing. University of Crete, Greece. July 18.</p></div></li>
       </ul>
-
       <p class="level-heading">Service</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">Transitioning from PhD to Lectureship</p>
-            <p class="pub-venue">Life Beyond the PhD Series. Doctoral College, Ulster University, UK. February 7.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2022</span>
-          <div>
-            <p class="pub-title">Supervising undergraduate research</p>
-            <p class="pub-venue">Teaching and Learning Series. Jointly invited by ADEFFI and ASMCF, UK &amp; Ireland. June 29.</p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">Transitioning from PhD to Lectureship</p><p class="pub-venue">Life Beyond the PhD Series. Doctoral College, Ulster University, UK. February 7.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2022</span><div><p class="pub-title">Supervising undergraduate research</p><p class="pub-venue">Teaching and Learning Series. Jointly invited by ADEFFI and ASMCF, UK &amp; Ireland. June 29.</p></div></li>
       </ul>
-
       <p class="level-heading">Outreach</p>
       <ul class="pub-list">
-        <li class="pub-item">
-          <span class="pub-year">2025</span>
-          <div>
-            <p class="pub-title">Linguistics Taster Lecture</p>
-            <p class="pub-venue">St Catherine's College Academic Taster Days, Oxford.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2024</span>
-          <div>
-            <p class="pub-title">Linguistics Taster Lecture</p>
-            <p class="pub-venue">St Catherine's College Academic Taster Days, Oxford.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2023</span>
-          <div>
-            <p class="pub-title">Linguistics Taster Lecture</p>
-            <p class="pub-venue">St Catherine's College Academic Taster Days, Oxford.</p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2021</span>
-          <div>
-            <p class="pub-title">As we speak: managing bilingual societies in Europe <em>(with Cecilia Gialdini)</em></p>
-            <p class="pub-venue">Imagine Festival, Belfast. March 25. <a class="pub-link" href="https://www.youtube.com/watch?v=DYt4RlbHbuY">Watch ↗</a></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2021</span>
-          <div>
-            <p class="pub-title">L'arrivée du pronom 'iel' dans le dictionnaire le Robert marque-t-elle un tournant sociétal?</p>
-            <p class="pub-venue">20 minutes, France. November 18. <a class="pub-link" href="https://www.20minutes.fr/societe/3174555-20211118-arrivee-pronom-iel-dictionnaire-robert-marque-tournant-societal">Read ↗</a></p>
-          </div>
-        </li>
-        <li class="pub-item">
-          <span class="pub-year">2021</span>
-          <div>
-            <p class="pub-title">'Iel', un nouveau pronom dans le dictionnaire</p>
-            <p class="pub-venue">BFMTV, France. November 17. <a class="pub-link" href="https://www.bfmtv.com/replay-emissions/bfm-news/iel-un-nouveau-pronom-dans-le-dictionnaire-17-11_VN-202111170481.html">Watch ↗</a></p>
-          </div>
-        </li>
+        <li class="pub-item"><span class="pub-year">2025</span><div><p class="pub-title">Linguistics Taster Lecture</p><p class="pub-venue">St Catherine's College Academic Taster Days, Oxford.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2024</span><div><p class="pub-title">Linguistics Taster Lecture</p><p class="pub-venue">St Catherine's College Academic Taster Days, Oxford.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2023</span><div><p class="pub-title">Linguistics Taster Lecture</p><p class="pub-venue">St Catherine's College Academic Taster Days, Oxford.</p></div></li>
+        <li class="pub-item"><span class="pub-year">2021</span><div><p class="pub-title">As we speak: managing bilingual societies in Europe <em>(with Cecilia Gialdini)</em></p><p class="pub-venue">Imagine Festival, Belfast. March 25. <a class="pub-link" href="https://www.youtube.com/watch?v=DYt4RlbHbuY">Watch ↗</a></p></div></li>
+        <li class="pub-item"><span class="pub-year">2021</span><div><p class="pub-title">L'arrivée du pronom 'iel' dans le dictionnaire le Robert marque-t-elle un tournant sociétal?</p><p class="pub-venue">20 minutes, France. November 18. <a class="pub-link" href="https://www.20minutes.fr/societe/3174555-20211118-arrivee-pronom-iel-dictionnaire-robert-marque-tournant-societal">Read ↗</a></p></div></li>
+        <li class="pub-item"><span class="pub-year">2021</span><div><p class="pub-title">'Iel', un nouveau pronom dans le dictionnaire</p><p class="pub-venue">BFMTV, France. November 17. <a class="pub-link" href="https://www.bfmtv.com/replay-emissions/bfm-news/iel-un-nouveau-pronom-dans-le-dictionnaire-17-11_VN-202111170481.html">Watch ↗</a></p></div></li>
       </ul>
-
     </div>
   </section>
 
   <!-- TEACHING -->
-  <section id="teaching">
+  <section id="teaching" class="page-section">
     <div class="page-wrap">
       <p class="section-label">Teaching</p>
-
       <div style="margin-top: 2.2rem;">
-
-        <!-- UNIVERSITY OF OXFORD -->
         <div class="uni-block">
           <p class="uni-name">University of Oxford</p>
-          <div class="level-group">
-            <p class="level-heading" style="margin-top: 0;">Undergraduate — Year 1</p>
-            <ul class="course-list">
-              <li class="course-item"><span class="course-name">Prelims — General Linguistics</span></li>
-              <li class="course-item"><span class="course-name">Prelims — Semantics &amp; Pragmatics</span></li>
-            </ul>
-          </div>
-          <div class="level-group">
-            <p class="level-heading">Undergraduate — Years 2, 3, 4</p>
-            <ul class="course-list">
-              <li class="course-item"><span class="course-name">Paper A/XIII — General Linguistics</span></li>
-              <li class="course-item"><span class="course-name">Paper IV — French Historical Linguistics</span></li>
-              <li class="course-item"><span class="course-name">Paper V — Modern French Linguistics</span></li>
-              <li class="course-item"><span class="course-name">Paper B2 — Syntax</span></li>
-              <li class="course-item"><span class="course-name">Paper B6 — Historical Linguistics</span></li>
-            </ul>
-          </div>
-          <div class="level-group">
-            <p class="level-heading">Postgraduate</p>
-            <ul class="course-list">
-              <li class="course-item"><span class="course-name">MPhil Thesis — Research supervision</span></li>
-              <li class="course-item"><span class="course-name">Paper Bii — Syntax</span></li>
-              <li class="course-item"><span class="course-name">Paper Di — History of French</span></li>
-              <li class="course-item"><span class="course-name">Paper Dii — Structure of French</span></li>
-            </ul>
-          </div>
-          <div class="level-group">
-            <p class="level-heading">Miscellaneous</p>
-            <ul class="course-list">
-              <li class="course-item"><span class="course-name">Reading Group — Occitan</span></li>
-              <li class="course-item"><span class="course-name">Oxford Prospects Programme — Critical Thinking</span></li>
-              <li class="course-item"><span class="course-name">Oxford Prospects Programme — Presentation Skills</span></li>
-            </ul>
-          </div>
+          <div class="level-group"><p class="level-heading" style="margin-top:0;">Undergraduate — Year 1</p><ul class="course-list"><li class="course-item"><span class="course-name">Prelims — General Linguistics</span></li><li class="course-item"><span class="course-name">Prelims — Semantics &amp; Pragmatics</span></li></ul></div>
+          <div class="level-group"><p class="level-heading">Undergraduate — Years 2, 3, 4</p><ul class="course-list"><li class="course-item"><span class="course-name">Paper A/XIII — General Linguistics</span></li><li class="course-item"><span class="course-name">Paper IV — French Historical Linguistics</span></li><li class="course-item"><span class="course-name">Paper V — Modern French Linguistics</span></li><li class="course-item"><span class="course-name">Paper B2 — Syntax</span></li><li class="course-item"><span class="course-name">Paper B6 — Historical Linguistics</span></li></ul></div>
+          <div class="level-group"><p class="level-heading">Postgraduate</p><ul class="course-list"><li class="course-item"><span class="course-name">MPhil Thesis — Research supervision</span></li><li class="course-item"><span class="course-name">Paper Bii — Syntax</span></li><li class="course-item"><span class="course-name">Paper Di — History of French</span></li><li class="course-item"><span class="course-name">Paper Dii — Structure of French</span></li></ul></div>
+          <div class="level-group"><p class="level-heading">Miscellaneous</p><ul class="course-list"><li class="course-item"><span class="course-name">Reading Group — Occitan</span></li><li class="course-item"><span class="course-name">Oxford Prospects Programme — Critical Thinking</span></li><li class="course-item"><span class="course-name">Oxford Prospects Programme — Presentation Skills</span></li></ul></div>
         </div>
-
-        <!-- ULSTER UNIVERSITY -->
         <div class="uni-block">
           <p class="uni-name">Ulster University</p>
-          <div class="level-group">
-            <p class="level-heading" style="margin-top: 0;">Undergraduate</p>
-            <ul class="course-list">
-              <li class="course-item"><span class="course-name">CMM538 — Dissertation, research supervision</span></li>
-              <li class="course-item"><span class="course-name">CMM350 — Advanced Syntax</span></li>
-              <li class="course-item"><span class="course-name">CMM349 — Formal Semantics</span></li>
-              <li class="course-item"><span class="course-name">CMM384 — Steps into Sociolinguistics</span></li>
-              <li class="course-item"><span class="course-name">CMM151 — Introduction to Morphology and Syntax</span></li>
-              <li class="course-item"><span class="course-name">FRE507 — French Language &amp; Society</span></li>
-              <li class="course-item"><span class="course-name">FRE505 — Dissertation, research supervision</span></li>
-              <li class="course-item"><span class="course-name">LAN510 — Advanced Translation for English Native Speakers</span></li>
-              <li class="course-item"><span class="course-name">LAN510 — Interpreting</span></li>
-              <li class="course-item"><span class="course-name">ESL302 — Translation for French Native Speakers</span></li>
-            </ul>
-          </div>
-          <div class="level-group">
-            <p class="level-heading">Postgraduate</p>
-            <ul class="course-list">
-              <li class="course-item"><span class="course-name">CMM531 — Formal Semantics</span></li>
-              <li class="course-item"><span class="course-name">Doctoral College — Introduction to LaTeX</span></li>
-            </ul>
-          </div>
+          <div class="level-group"><p class="level-heading" style="margin-top:0;">Undergraduate</p><ul class="course-list"><li class="course-item"><span class="course-name">CMM538 — Dissertation, research supervision</span></li><li class="course-item"><span class="course-name">CMM350 — Advanced Syntax</span></li><li class="course-item"><span class="course-name">CMM349 — Formal Semantics</span></li><li class="course-item"><span class="course-name">CMM384 — Steps into Sociolinguistics</span></li><li class="course-item"><span class="course-name">CMM151 — Introduction to Morphology and Syntax</span></li><li class="course-item"><span class="course-name">FRE507 — French Language &amp; Society</span></li><li class="course-item"><span class="course-name">FRE505 — Dissertation, research supervision</span></li><li class="course-item"><span class="course-name">LAN510 — Advanced Translation for English Native Speakers</span></li><li class="course-item"><span class="course-name">LAN510 — Interpreting</span></li><li class="course-item"><span class="course-name">ESL302 — Translation for French Native Speakers</span></li></ul></div>
+          <div class="level-group"><p class="level-heading">Postgraduate</p><ul class="course-list"><li class="course-item"><span class="course-name">CMM531 — Formal Semantics</span></li><li class="course-item"><span class="course-name">Doctoral College — Introduction to LaTeX</span></li></ul></div>
         </div>
-
-        <!-- QUEEN'S UNIVERSITY BELFAST -->
         <div class="uni-block">
           <p class="uni-name">Queen's University Belfast</p>
-          <div class="level-group">
-            <p class="level-heading" style="margin-top: 0;">Undergraduate</p>
-            <ul class="course-list">
-              <li class="course-item"><span class="course-name">FRH3101 — Essay Writing</span></li>
-              <li class="course-item"><span class="course-name">FRH3101 — Translation</span></li>
-              <li class="course-item"><span class="course-name">FRH3050 — French Grammar</span></li>
-              <li class="course-item"><span class="course-name">FRH3050 — Oral French</span></li>
-              <li class="course-item"><span class="course-name">FRH3050 — Professional French</span></li>
-            </ul>
-          </div>
+          <div class="level-group"><p class="level-heading" style="margin-top:0;">Undergraduate</p><ul class="course-list"><li class="course-item"><span class="course-name">FRH3101 — Essay Writing</span></li><li class="course-item"><span class="course-name">FRH3101 — Translation</span></li><li class="course-item"><span class="course-name">FRH3050 — French Grammar</span></li><li class="course-item"><span class="course-name">FRH3050 — Oral French</span></li><li class="course-item"><span class="course-name">FRH3050 — Professional French</span></li></ul></div>
         </div>
-
-        <!-- LYCÉE GRANDMONT -->
         <div class="uni-block">
           <p class="uni-name">Lycée Grandmont</p>
-          <div class="level-group">
-            <p class="level-heading" style="margin-top: 0;">Baccalauréat Level</p>
-            <ul class="course-list">
-              <li class="course-item"><span class="course-name">English Language</span></li>
-              <li class="course-item"><span class="course-name">English Literature</span></li>
-              <li class="course-item"><span class="course-name">Technological Sciences in English</span></li>
-            </ul>
-          </div>
+          <div class="level-group"><p class="level-heading" style="margin-top:0;">Baccalauréat Level</p><ul class="course-list"><li class="course-item"><span class="course-name">English Language</span></li><li class="course-item"><span class="course-name">English Literature</span></li><li class="course-item"><span class="course-name">Technological Sciences in English</span></li></ul></div>
         </div>
-
       </div>
     </div>
   </section>
 
- <!-- EVENTS -->
-  <section id="events">
+  <!-- EVENTS -->
+  <section id="events" class="page-section">
     <div class="page-wrap">
       <p class="section-label">Events</p>
       <p>Snapshots from events I have organised over the years.</p>
-
       <ul class="event-list">
-
-        <!-- GRAMS 2026 -->
-        <li class="event-card">
-          <div class="event-photos">
-            <figure>
-              <a href="logowithoutfulltitle.png" target="_blank">
-                <img class="event-photo" src="logowithoutfulltitle.png" alt="GRAMS logo">
-              </a>
-              <figcaption>All we have for now is a logo.</figcaption>
-            </figure>
-          </div>
-          <div class="event-body">
-            <p class="event-date">25–26 May 2026 · Trinity College Dublin</p>
-            <p class="event-title">Gallo-Romance Advances in Morphology &amp; Syntax (GRAMS)</p>
-            <p class="event-venue">I am the founder of GRAMS, an initiative bringing together morphologists and syntacticians working on Gallo-Romance languages. Invited speakers: Sam Wolfe (Oxford) and Michelle Sheehan (Newcastle). <a class="pub-link" href="https://sites.google.com/view/grams-workshop">Website ↗</a></p>
-          </div>
-        </li>
-
-        <!-- SLE 2025 -->
-        <li class="event-card">
-          <div class="event-photos">
-            <figure>
-              <a href="withalexandru.jpg" target="_blank">
-                <img class="event-photo" src="withalexandru.jpg" alt="At the Outreach workshop with Alexandru Nicolae">
-              </a>
-              <figcaption>At the Outreach workshop, organised with Alexandru Nicolae.</figcaption>
-            </figure>
-            <figure>
-              <a href="onthelastday.jpg" target="_blank">
-                <img class="event-photo" src="onthelastday.jpg" alt="Announcing the winners on the last day">
-              </a>
-              <figcaption>Announcing the winners during the awards ceremony on the last day.</figcaption>
-            </figure>
-            <figure>
-              <a href="withafrapujol.jpg" target="_blank">
-                <img class="event-photo" src="withafrapujol.jpg" alt="With Afra Pujol i Campeny">
-              </a>
-              <figcaption>At the Romance workshop, organised with Afra Pujol i Campeny.</figcaption>
-            </figure>
-          </div>
-          <div class="event-body">
-            <p class="event-date">26–29 August 2025 · Université Bordeaux Montaigne</p>
-            <p class="event-title">Societas Linguistica Europaea (58th edition)</p>
-            <p class="event-venue">I co-organised two workshops and chaired the Awards Committee. I co-led the workshop 'Diachronic Studies on Minoritised and Under-researched Romance Varieties', featuring 15 talks. <a class="pub-link" href="https://societaslinguistica.eu/sle2025/">Website ↗</a></p>
-          </div>
-        </li>
-
-        <!-- DiGS26 -->
-        <li class="event-card">
-          <div class="event-photos">
-            <figure>
-              <a href="largeviewpoint.jpg" target="_blank">
-                <img class="event-photo" src="largeviewpoint.jpg" alt="At the Taylor Institution Library" style="object-position: left center;">
-              </a>
-              <figcaption>The conference was held at the Taylor Institution Library.</figcaption>
-            </figure>
-            <figure>
-              <a href="atthedinner.jpg" target="_blank">
-                <img class="event-photo" src="atthedinner.jpg" alt="Trinity College Hall">
-              </a>
-              <figcaption>The dinner took place in the hall of Trinity College.</figcaption>
-            </figure>
-            <figure>
-              <a href="digsgroup.jpg" target="_blank">
-                <img class="event-photo" src="digsgroup.jpg" alt="Group photo">
-              </a>
-              <figcaption>The organisers with the plenary speakers.</figcaption>
-            </figure>
-          </div>
-          <div class="event-body">
-            <p class="event-date">23–26 June 2025 · University of Oxford</p>
-            <p class="event-title">Diachronic Generative Syntax (26th edition)</p>
-            <p class="event-venue">The leading venue for formal investigation of syntactic change. Plenary speakers: Anne Breitbarth, Pierre Larrivée, Ana Maria Martins, and Jenneke Van der Wal. Proceedings to appear in the Journal of Historical Syntax. <a class="pub-link" href="https://digs26.ling-phil.ox.ac.uk/">Website ↗</a></p>
-          </div>
-        </li>
-
-        <!-- Occitan Studies Day 3rd edition -->
-        <li class="event-card">
-          <div class="event-photos">
-            <figure>
-              <a href="openingosd.jpg" target="_blank">
-                <img class="event-photo" src="openingosd.jpg" alt="Opening the conference">
-              </a>
-              <figcaption>Opening of the conference in the salon of the Maison Française.</figcaption>
-            </figure>
-            <figure>
-              <a href="groupphotogarden.jpg" target="_blank">
-                <img class="event-photo" src="groupphotogarden.jpg" alt="In the garden">
-              </a>
-              <figcaption>Group photo of the participants in the garden of the Maison Française.</figcaption>
-            </figure>
-            <figure>
-              <a href="sunnywine.jpg" target="_blank">
-                <img class="event-photo" src="sunnywine.jpg" alt="Wine reception">
-              </a>
-              <figcaption>Sunny wine reception at the end, with wines from Occitania.</figcaption>
-            </figure>
-          </div>
-          <div class="event-body">
-            <p class="event-date">10 May 2025 · University of Oxford</p>
-            <p class="event-title">Occitan Studies Day (3rd edition)</p>
-            <p class="event-venue">A one-day conference bringing together experts in Occitan studies. Plenary speaker: Bill Burgwinkle (University of Cambridge). <a class="pub-link" href="https://drive.google.com/file/d/1mAI16gCH4_-BMbSumLs-CTDV80Gkyj6J/view?usp=sharing">Programme ↗</a></p>
-          </div>
-        </li>
-
-        <!-- Occitan Studies Day 2nd edition -->
-        <li class="event-card">
-          <div class="event-photos">
-            <figure>
-              <a href="osdtour.png" target="_blank">
-                <img class="event-photo" src="osdtour.png" alt="Occitan walking tour">
-              </a>
-              <figcaption>The only guided tour of Oxford conducted in Occitan.</figcaption>
-            </figure>
-            <figure>
-              <a href="flashtalks.png" target="_blank">
-                <img class="event-photo" src="flashtalks.png" alt="Flash talks by students">
-              </a>
-              <figcaption>Flash talks from students in front of international experts.</figcaption>
-            </figure>
-            <figure>
-              <a href="grouposd2.jpg" target="_blank">
-                <img class="event-photo" src="grouposd2.jpg" alt="Group photo">
-              </a>
-              <figcaption>Group photo of the participants at St Giles House.</figcaption>
-            </figure>
-          </div>
-          <div class="event-body">
-            <p class="event-date">11 May 2024 · University of Oxford</p>
-            <p class="event-title">Occitan Studies Day (2nd edition)</p>
-            <p class="event-venue">An interdisciplinary event featuring talks spanning linguistics, history, and literature. Plenary speaker: Xavier Bach (Université Toulouse Jean Jaurès). Proceedings published in <em>Revue Romane</em>. <a class="pub-link" href="https://drive.google.com/file/d/1XrrSgstCRjAuZ_osaCMi8-R-VemDHW0o/view?usp=sharing">Programme ↗</a> <a class="pub-link" href="https://doi.org/10.1075/rro.60.1">Special issue ↗</a></p>
-          </div>
-        </li>
-
-        <!-- LAGB 2022 -->
-        <li class="event-card">
-          <div class="event-photos">
-            <figure>
-              <a href="sevdalilagb.jpg" target="_blank">
-                <img class="event-photo" src="sevdalilagb.jpg" alt="Christina Sevdali giving a talk">
-              </a>
-              <figcaption>Christina Sevdali giving a talk on diachronic syntax.</figcaption>
-            </figure>
-            <figure>
-              <a href="lagbgroup.jpg" target="_blank">
-                <img class="event-photo" src="lagbgroup.jpg" alt="LAGB executive committee" style="object-position: top center;">
-              </a>
-              <figcaption>Some members of the LAGB Executive Committee in 2022.</figcaption>
-            </figure>
-            <figure>
-              <a href="jaildinner.png" target="_blank">
-                <img class="event-photo" src="jaildinner.png" alt="Dinner in a jail">
-              </a>
-              <figcaption>The conference dinner took place in the Crumlin Road Gaol.</figcaption>
-            </figure>
-          </div>
-          <div class="event-body">
-            <p class="event-date">12 September 2022 · Ulster University</p>
-            <p class="event-title">Summer School of the Linguistics Association of Great Britain</p>
-            <p class="event-venue">I chaired the LAGB postgraduate student committee during my PhD. Invited speakers: Christina Sevdali, Liina Pylkkänen, Maria Teresa Guasti, and Juliana Gerard.</p>
-          </div>
-        </li>
-
-        <!-- LAGB 2021 -->
-        <li class="event-card">
-          <div class="event-photos">
-            <figure>
-              <a href="herculespause.jpg" target="_blank">
-                <img class="event-photo" src="herculespause.jpg" alt="Hercules">
-              </a>
-              <figcaption>Since the conference was online, this is what my coffee breaks looked like.</figcaption>
-            </figure>
-          </div>
-          <div class="event-body">
-            <p class="event-date">6 September 2021 · Online</p>
-            <p class="event-title">Summer School of the Linguistics Association of Great Britain</p>
-            <p class="event-venue">I chaired the LAGB postgraduate student committee during my PhD. Invited speakers: Raffaella Folli, Maria Polinsky, Brian Joseph, and Kersti Börjars.</p>
-          </div>
-        </li>
-
+        <li class="event-card"><div class="event-photos"><figure><a href="logowithoutfulltitle.png" target="_blank"><img class="event-photo" src="logowithoutfulltitle.png" alt="GRAMS logo"></a><figcaption>All we have for now is a logo.</figcaption></figure></div><div class="event-body"><p class="event-date">25–26 May 2026 · Trinity College Dublin</p><p class="event-title">Gallo-Romance Advances in Morphology &amp; Syntax (GRAMS)</p><p class="event-venue">I am the founder of GRAMS, an initiative bringing together morphologists and syntacticians working on Gallo-Romance languages. Invited speakers: Sam Wolfe (Oxford) and Michelle Sheehan (Newcastle). <a class="pub-link" href="https://sites.google.com/view/grams-workshop">Website ↗</a></p></div></li>
+        <li class="event-card"><div class="event-photos"><figure><a href="withalexandru.jpg" target="_blank"><img class="event-photo" src="withalexandru.jpg" alt="At the Outreach workshop with Alexandru Nicolae"></a><figcaption>At the Outreach workshop, organised with Alexandru Nicolae.</figcaption></figure><figure><a href="onthelastday.jpg" target="_blank"><img class="event-photo" src="onthelastday.jpg" alt="Announcing the winners on the last day"></a><figcaption>Announcing the winners during the awards ceremony on the last day.</figcaption></figure><figure><a href="withafrapujol.jpg" target="_blank"><img class="event-photo" src="withafrapujol.jpg" alt="With Afra Pujol i Campeny"></a><figcaption>At the Romance workshop, organised with Afra Pujol i Campeny.</figcaption></figure></div><div class="event-body"><p class="event-date">26–29 August 2025 · Université Bordeaux Montaigne</p><p class="event-title">Societas Linguistica Europaea (58th edition)</p><p class="event-venue">I co-organised two workshops and chaired the Awards Committee. I co-led the workshop 'Diachronic Studies on Minoritised and Under-researched Romance Varieties', featuring 15 talks. <a class="pub-link" href="https://societaslinguistica.eu/sle2025/">Website ↗</a></p></div></li>
+        <li class="event-card"><div class="event-photos"><figure><a href="largeviewpoint.jpg" target="_blank"><img class="event-photo" src="largeviewpoint.jpg" alt="At the Taylor Institution Library" style="object-position: left center;"></a><figcaption>The conference was held at the Taylor Institution Library.</figcaption></figure><figure><a href="atthedinner.jpg" target="_blank"><img class="event-photo" src="atthedinner.jpg" alt="Trinity College Hall"></a><figcaption>The dinner took place in the hall of Trinity College.</figcaption></figure><figure><a href="digsgroup.jpg" target="_blank"><img class="event-photo" src="digsgroup.jpg" alt="Group photo"></a><figcaption>The organisers with the plenary speakers.</figcaption></figure></div><div class="event-body"><p class="event-date">23–26 June 2025 · University of Oxford</p><p class="event-title">Diachronic Generative Syntax (26th edition)</p><p class="event-venue">The leading venue for formal investigation of syntactic change. Plenary speakers: Anne Breitbarth, Pierre Larrivée, Ana Maria Martins, and Jenneke Van der Wal. Proceedings to appear in the Journal of Historical Syntax. <a class="pub-link" href="https://digs26.ling-phil.ox.ac.uk/">Website ↗</a></p></div></li>
+        <li class="event-card"><div class="event-photos"><figure><a href="openingosd.jpg" target="_blank"><img class="event-photo" src="openingosd.jpg" alt="Opening the conference"></a><figcaption>Opening of the conference in the salon of the Maison Française.</figcaption></figure><figure><a href="groupphotogarden.jpg" target="_blank"><img class="event-photo" src="groupphotogarden.jpg" alt="In the garden"></a><figcaption>Group photo of the participants in the garden of the Maison Française.</figcaption></figure><figure><a href="sunnywine.jpg" target="_blank"><img class="event-photo" src="sunnywine.jpg" alt="Wine reception"></a><figcaption>Sunny wine reception at the end, with wines from Occitania.</figcaption></figure></div><div class="event-body"><p class="event-date">10 May 2025 · University of Oxford</p><p class="event-title">Occitan Studies Day (3rd edition)</p><p class="event-venue">A one-day conference bringing together experts in Occitan studies. Plenary speaker: Bill Burgwinkle (University of Cambridge). <a class="pub-link" href="https://drive.google.com/file/d/1mAI16gCH4_-BMbSumLs-CTDV80Gkyj6J/view?usp=sharing">Programme ↗</a></p></div></li>
+        <li class="event-card"><div class="event-photos"><figure><a href="osdtour.png" target="_blank"><img class="event-photo" src="osdtour.png" alt="Occitan walking tour"></a><figcaption>The only guided tour of Oxford conducted in Occitan.</figcaption></figure><figure><a href="flashtalks.png" target="_blank"><img class="event-photo" src="flashtalks.png" alt="Flash talks by students"></a><figcaption>Flash talks from students in front of international experts.</figcaption></figure><figure><a href="grouposd2.jpg" target="_blank"><img class="event-photo" src="grouposd2.jpg" alt="Group photo"></a><figcaption>Group photo of the participants at St Giles House.</figcaption></figure></div><div class="event-body"><p class="event-date">11 May 2024 · University of Oxford</p><p class="event-title">Occitan Studies Day (2nd edition)</p><p class="event-venue">An interdisciplinary event featuring talks spanning linguistics, history, and literature. Plenary speaker: Xavier Bach (Université Toulouse Jean Jaurès). Proceedings published in <em>Revue Romane</em>. <a class="pub-link" href="https://drive.google.com/file/d/1XrrSgstCRjAuZ_osaCMi8-R-VemDHW0o/view?usp=sharing">Programme ↗</a> <a class="pub-link" href="https://doi.org/10.1075/rro.60.1">Special issue ↗</a></p></div></li>
+        <li class="event-card"><div class="event-photos"><figure><a href="sevdalilagb.jpg" target="_blank"><img class="event-photo" src="sevdalilagb.jpg" alt="Christina Sevdali giving a talk"></a><figcaption>Christina Sevdali giving a talk on diachronic syntax.</figcaption></figure><figure><a href="lagbgroup.jpg" target="_blank"><img class="event-photo" src="lagbgroup.jpg" alt="LAGB executive committee" style="object-position: top center;"></a><figcaption>Some members of the LAGB Executive Committee in 2022.</figcaption></figure><figure><a href="jaildinner.png" target="_blank"><img class="event-photo" src="jaildinner.png" alt="Dinner in a jail"></a><figcaption>The conference dinner took place in the Crumlin Road Gaol.</figcaption></figure></div><div class="event-body"><p class="event-date">12 September 2022 · Ulster University</p><p class="event-title">Summer School of the Linguistics Association of Great Britain</p><p class="event-venue">I chaired the LAGB postgraduate student committee during my PhD. Invited speakers: Christina Sevdali, Liina Pylkkänen, Maria Teresa Guasti, and Juliana Gerard.</p></div></li>
+        <li class="event-card"><div class="event-photos"><figure><a href="herculespause.jpg" target="_blank"><img class="event-photo" src="herculespause.jpg" alt="Hercules"></a><figcaption>Since the conference was online, this is what my coffee breaks looked like.</figcaption></figure></div><div class="event-body"><p class="event-date">6 September 2021 · Online</p><p class="event-title">Summer School of the Linguistics Association of Great Britain</p><p class="event-venue">I chaired the LAGB postgraduate student committee during my PhD. Invited speakers: Raffaella Folli, Maria Polinsky, Brian Joseph, and Kersti Börjars.</p></div></li>
       </ul>
     </div>
   </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="page-wrap">
       © 2026 Marc Olivier-Loiseau · Last updated March 2026
     </div>
   </footer>
+
+
+  <script>
+    const SECTIONS = ['home','publications','talks','teaching','events'];
+
+    function showSection(name) {
+      SECTIONS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('active', id === name);
+      });
+      document.querySelectorAll('.nav-links a[data-section]').forEach(a => {
+        a.classList.toggle('nav-active', a.dataset.section === name);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => showSection('home'));
+  </script>
 
 </body>
 </html>
