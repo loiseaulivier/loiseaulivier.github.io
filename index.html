@@ -69,7 +69,7 @@
     .page-section { display: none; }
     .page-section.active { display: block; }
     .section-label { font-size: 2rem; font-weight: 400; line-height: 1.2; letter-spacing: -.01em; margin-bottom: 1.6rem; }
-    #news { padding-bottom: 0 !important; }
+    
 
     /* RESEARCH */
     .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 3rem; margin-top: 1.5rem; }
@@ -157,6 +157,7 @@
       <a href="#" class="nav-name">Dr Olivier-Loiseau</a>
       <ul class="nav-links">
         <li><a href="#" onclick="showSection('home');return false;" data-section="home">Home</a></li>
+        <li><a href="#" onclick="showSection('research');return false;" data-section="research">Research</a></li>
         <li><a href="#" onclick="showSection('publications');return false;" data-section="publications">Publications</a></li>
         <li><a href="#" onclick="showSection('talks');return false;" data-section="talks">Talks</a></li>
         <li><a href="#" onclick="showSection('teaching');return false;" data-section="teaching">Teaching</a></li>
@@ -364,9 +365,13 @@
     <button onclick="document.querySelectorAll('.news-extra').forEach(el => el.style.display = 'grid');this.style.display='none';" style="margin-top:1.2rem;font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:none;border:none;cursor:pointer;padding:0;">Older news ↓</button>
   </div>
 
-  <!-- RESEARCH — inside home section -->
-  <div id="research" style="border-top: 1px solid var(--rule);">
-    <div class="page-wrap" style="padding-top: 4rem; padding-bottom: 4rem;">
+  </div><!-- end #news wrapper -->
+
+  </section><!-- end #home -->
+
+    <!-- RESEARCH -->
+<section id="research" class="page-section">
+  <div class="page-wrap">
       <p class="section-label">Research</p>
       <p>My research investigates the formal properties of natural language, drawing on corpus linguistics, diachronic data, and cross-linguistic comparison. Past and current projects include:</p>
       <div class="research-grid">
@@ -381,12 +386,8 @@
         <div class="research-card"><h3>Greek</h3><p>My forthcoming book compares clitic placement across Greek varieties (Standard, Pontic, Cypriot, Italiot, and Tsakonian), with the aim of capturing syntactic variation under a unified analysis. On Standard Modern Greek specifically, my collaboration with Christina Sevdali explores patterns of clitic doubling and reduplication, for they ask questions about long distance phenomena.</p></div>
       </div>
     </div>
-  </div>
-
-  </div><!-- end #news wrapper -->
-
-  </section><!-- end #home -->
-
+</section>
+  
   <!-- PUBLICATIONS -->
   <section id="publications" class="page-section">
     <div class="page-wrap"> 
@@ -590,9 +591,10 @@
 
 
 <script>
-    const SECTIONS = ['home', 'publications', 'talks', 'teaching', 'events'];
+    const SECTIONS = ['home', 'research', 'publications', 'talks', 'teaching', 'events'];
     const TITLES = {
       home: 'Dr. Marc Olivier-Loiseau | Theoretical & Historical Linguist',
+      research: 'Research | Marc Olivier-Loiseau',
       publications: 'Publications | Marc Olivier-Loiseau',
       talks: 'Talks | Marc Olivier-Loiseau',
       teaching: 'Teaching | Marc Olivier-Loiseau',
