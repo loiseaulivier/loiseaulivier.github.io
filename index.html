@@ -32,7 +32,7 @@
     p { margin-bottom: 1rem; text-align: left; }
     p:last-child { margin-bottom: 0; }
     .page-wrap { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
-    .page-wrap > p { max-width: 40rem; }
+    .page-wrap > p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; text-justify: inter-word; }
 
     /* NAV */
     nav { position: sticky; top: 0; z-index: 100; background: var(--paper);
@@ -51,13 +51,13 @@
     header { padding: 5rem 0 3.5rem; border-bottom: 1px solid var(--rule); }
     .header-inner { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 3rem; align-items: center; }
     .header-inner > div:first-child { display: flex; flex-direction: column; }
-    h1 { order: 1; font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 400; line-height: 1.1; letter-spacing: -.01em; }
+    h1 { order: 1; font-size: clamp(2.2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.1; letter-spacing: -.01em; }
     h1 em { font-style: normal; }
     .eyebrow { order: 2; margin: .5rem 0 0; font-size: 1.25rem; font-style: italic; color: var(--muted); }
     .affiliation { order: 3; margin-top: 1.4rem; font-size: 1.05rem; line-height: 1.5; color: var(--muted); }
     .affiliation span { color: var(--ink); font-weight: 500; }
     .avatar-block { text-align: right; }
-    .avatar { width: min(320px, 100%); height: 220px; margin-left: auto; overflow: hidden;
+    .avatar { width: 100%; max-width: 320px; height: 220px; margin-left: auto; overflow: hidden;
               border: 1px solid var(--rule); border-radius: 2px; }
     .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center -30%; transform: scale(2); }
     .contact-item .avatar-block { text-align: left; }
@@ -589,21 +589,54 @@
   </footer>
 
 
-  <script>
-    const SECTIONS = ['home','publications','talks','teaching','events'];
+<script>
+    const SECTIONS = ['home', 'publications', 'talks', 'teaching', 'events'];
+    const TITLES = {
+      home: 'Dr. Marc Olivier-Loiseau | Theoretical & Historical Linguist',
+      publications: 'Publications | Marc Olivier-Loiseau',
+      talks: 'Talks | Marc Olivier-Loiseau',
+      teaching: 'Teaching | Marc Olivier-Loiseau',
+      events: 'Events | Marc Olivier-Loiseau'
+    };
 
-    function showSection(name) {
+    function sectionFromHash() {
+      const name = location.hash.slice(1);
+      return SECTIONS.includes(name) ? name : 'home';
+    }
+
+    function showSection(name, push = true) {
+      if (!SECTIONS.includes(name)) name = 'home';
       SECTIONS.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.toggle('active', id === name);
       });
       document.querySelectorAll('.nav-links a[data-section]').forEach(a => {
-        a.classList.toggle('nav-active', a.dataset.section === name);
+        const on = a.dataset.section === name;
+        a.classList.toggle('nav-active', on);
+        if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
       });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.title = TITLES[name];
+      if (push && location.hash !== '#' + name) history.pushState(null, '', '#' + name);
+      window.scrollTo(0, 0);
     }
 
-    document.addEventListener('DOMContentLoaded', () => showSection('home'));
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.nav-links a[data-section]').forEach(a => {
+        a.setAttribute('href', '#' + a.dataset.section);
+      });
+      document.querySelector('.nav-name').addEventListener('click', e => {
+        e.preventDefault();
+        showSection('home');
+      });
+      document.querySelectorAll('.event-photo').forEach(img => {
+        img.loading = 'lazy';
+        img.decoding = 'async';
+      });
+      showSection(sectionFromHash(), false);
+    });
+
+    window.addEventListener('popstate', () => showSection(sectionFromHash(), false));
+    window.addEventListener('hashchange', () => showSection(sectionFromHash(), false));
   </script>
 
 </body>
